@@ -24,4 +24,21 @@ describe TicketHolder do
       subject.name.should == 'Master Yoda'
     end
   end
+
+  describe 'associations' do
+    context 'season' do
+      let!(:expected_season) { Season.create! }
+      let!(:ticket_holder) { TicketHolder.create!(:season_id => expected_season.id) }
+
+      subject { ticket_holder }
+
+      it 'is established' do
+        subject.should respond_to(:season)
+      end
+
+      it 'returns related season' do
+        subject.season.should == expected_season
+      end
+    end
+  end
 end
