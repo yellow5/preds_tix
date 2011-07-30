@@ -1,4 +1,6 @@
 PredsTix::Application.routes.draw do
+  resources :ticket_holders
+
   resources :seasons
 
   # The priority is based upon order of creation:

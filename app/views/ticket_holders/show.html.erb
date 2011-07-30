@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Season:</b>
+  <%= @ticket_holder.season_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @ticket_holder.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_ticket_holder_path(@ticket_holder) %> |
+<%= link_to 'Back', ticket_holders_path %>
