@@ -1,0 +1,29 @@
+<h1>Listing games</h1>
+
+<table>
+  <tr>
+    <th>Season</th>
+    <th>Puck drop</th>
+    <th>Opponent</th>
+    <th>Preseason</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @games.each do |game| %>
+  <tr>
+    <td><%= game.season_id %></td>
+    <td><%= game.puck_drop %></td>
+    <td><%= game.opponent %></td>
+    <td><%= game.preseason %></td>
+    <td><%= link_to 'Show', game %></td>
+    <td><%= link_to 'Edit', edit_game_path(game) %></td>
+    <td><%= link_to 'Destroy', game, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Game', new_game_path %>

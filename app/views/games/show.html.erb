@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Season:</b>
+  <%= @game.season_id %>
+</p>
+
+<p>
+  <b>Puck drop:</b>
+  <%= @game.puck_drop %>
+</p>
+
+<p>
+  <b>Opponent:</b>
+  <%= @game.opponent %>
+</p>
+
+<p>
+  <b>Preseason:</b>
+  <%= @game.preseason %>
+</p>
+
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>
