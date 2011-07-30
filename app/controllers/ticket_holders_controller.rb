@@ -25,6 +25,7 @@ class TicketHoldersController < ApplicationController
   # GET /ticket_holders/new.xml
   def new
     @ticket_holder = TicketHolder.new
+    @seasons       = Season.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class TicketHoldersController < ApplicationController
   # GET /ticket_holders/1/edit
   def edit
     @ticket_holder = TicketHolder.find(params[:id])
+    @seasons       = Season.all
   end
 
   # POST /ticket_holders

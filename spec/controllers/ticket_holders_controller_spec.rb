@@ -48,13 +48,38 @@ describe TicketHoldersController do
       get :new
       assigns(:ticket_holder).should be_a_new(TicketHolder)
     end
+
+    context '@seasons' do
+      before do
+        Season.create!(:years => '2011-12')
+        Season.create!(:years => '2012-13')
+      end
+
+      it 'is assigned available seasons' do
+        get :new
+        assigns(:seasons).should eq(Season.all)
+      end
+    end
   end
 
   describe "GET edit" do
+    let(:ticket_holder) { TicketHolder.create! valid_attributes }
+
     it "assigns the requested ticket_holder as @ticket_holder" do
-      ticket_holder = TicketHolder.create! valid_attributes
       get :edit, :id => ticket_holder.id.to_s
       assigns(:ticket_holder).should eq(ticket_holder)
+    end
+
+    context '@seasons' do
+      before do
+        Season.create!(:years => '2011-12')
+        Season.create!(:years => '2012-13')
+      end
+
+      it 'is assigned available seasons' do
+        get :edit, :id => ticket_holder.id.to_s
+        assigns(:seasons).should eq(Season.all)
+      end
     end
   end
 
