@@ -40,5 +40,20 @@ describe Ticket do
         subject.game.should eq(expected_game)
       end
     end
+
+    context 'holder' do
+      let!(:expected_holder) { TicketHolder.create! }
+      let!(:ticket) { Ticket.create!(:ticket_holder_id => expected_holder.id) }
+
+      subject { ticket }
+
+      it 'is established' do
+        subject.should respond_to(:holder)
+      end
+
+      it 'returns related holder' do
+        subject.holder.should eq(expected_holder)
+      end
+    end
   end
 end

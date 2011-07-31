@@ -40,5 +40,25 @@ describe TicketHolder do
         subject.season.should == expected_season
       end
     end
+
+    context 'tickets' do
+      let!(:ticket_holder) { TicketHolder.create! }
+      let!(:expected_tickets) do
+        [
+          Ticket.create!(:ticket_holder_id => ticket_holder.id),
+          Ticket.create!(:ticket_holder_id => ticket_holder.id)
+        ]
+      end
+
+      subject { ticket_holder }
+
+      it 'is established' do
+        subject.should respond_to(:tickets)
+      end
+
+      it 'returns related records' do
+        subject.tickets.should eq(expected_tickets)
+      end
+    end
   end
 end
