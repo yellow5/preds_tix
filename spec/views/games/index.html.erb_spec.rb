@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 describe "games/index.html.erb" do
+  let(:season) { Season.create!(:years => '2011-12') }
+
   before(:each) do
+    assign(:season, season)
     assign(:games, [
       stub_model(Game,
         :season_id => 1,
@@ -14,6 +17,11 @@ describe "games/index.html.erb" do
         :preseason => false
       )
     ])
+  end
+
+  it 'displays season years in header' do
+    render
+    assert_select 'h1', :text => "#{season.years} Games"
   end
 
   it "renders a list of games" do
