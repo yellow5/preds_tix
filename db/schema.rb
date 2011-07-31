@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110730231115) do
+ActiveRecord::Schema.define(:version => 20110731010238) do
 
   create_table "games", :force => true do |t|
     t.integer  "season_id"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(:version => 20110730231115) do
   create_table "ticket_holders", :force => true do |t|
     t.integer  "season_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tickets", :force => true do |t|
+    t.integer  "game_id"
+    t.integer  "ticket_holder_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

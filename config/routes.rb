@@ -1,4 +1,6 @@
 PredsTix::Application.routes.draw do
+  resources :tickets
+
   resources :games
 
   resources :ticket_holders
