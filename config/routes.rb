@@ -7,6 +7,8 @@ PredsTix::Application.routes.draw do
 
   resources :seasons
 
+  root :to => 'games#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
