@@ -71,12 +71,7 @@ describe Game do
 
     context 'games' do
       let!(:game) { Game.create! }
-      let!(:expected_tickets) do
-        [
-          Ticket.create!(:game_id => game.id),
-          Ticket.create!(:game_id => game.id)
-        ]
-      end
+      let(:expected_tickets) { Ticket.all(:conditions => { :game_id => game.id }) }
 
       subject { game }
 
@@ -86,6 +81,21 @@ describe Game do
 
       it 'returns related records' do
         subject.tickets.should eq(expected_tickets)
+      end
+    end
+  end
+
+  describe 'after create' do
+    context 'four new tickets' do
+      let(:game) { Game.new }
+
+      it 'are created' do
+        expect { game.save! }.should change { game.tickets.count }.by(4)
+      end
+
+      it 'are not created when saving existing record' do
+        game.save!
+        expect { game.save! }.should_not change { game.tickets.count }.by(4)
       end
     end
   end
