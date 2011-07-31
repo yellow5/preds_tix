@@ -14,6 +14,26 @@ describe Season do
   end
 
   describe 'associations' do
+    context 'games' do
+      let!(:season) { Season.create! }
+      let!(:expected_games) do
+        [
+          Game.create!(:season_id => season.id),
+          Game.create!(:season_id => season.id)
+        ]
+      end
+
+      subject { season }
+
+      it 'is established' do
+        subject.should respond_to(:games)
+      end
+
+      it 'returns related records' do
+        subject.games.should eq(expected_games)
+      end
+    end
+
     context 'ticket_holders' do
       let!(:season) { Season.create! }
       let!(:expected_ticket_holders) do

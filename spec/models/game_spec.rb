@@ -52,4 +52,21 @@ describe Game do
       subject.preseason.should be_true
     end
   end
+
+  describe 'associations' do
+    context 'season' do
+      let!(:expected_season) { Season.create! }
+      let!(:game) { Game.create!(:season_id => expected_season.id) }
+
+      subject { game }
+
+      it 'is established' do
+        subject.should respond_to(:season)
+      end
+
+      it 'returns related season' do
+        subject.season.should eq(expected_season)
+      end
+    end
+  end
 end
