@@ -68,5 +68,25 @@ describe Game do
         subject.season.should eq(expected_season)
       end
     end
+
+    context 'games' do
+      let!(:game) { Game.create! }
+      let!(:expected_tickets) do
+        [
+          Ticket.create!(:game_id => game.id),
+          Ticket.create!(:game_id => game.id)
+        ]
+      end
+
+      subject { game }
+
+      it 'is established' do
+        subject.should respond_to(:tickets)
+      end
+
+      it 'returns related records' do
+        subject.tickets.should eq(expected_tickets)
+      end
+    end
   end
 end
