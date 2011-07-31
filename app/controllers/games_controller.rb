@@ -24,7 +24,8 @@ class GamesController < ApplicationController
   # GET /games/new
   # GET /games/new.xml
   def new
-    @game = Game.new
+    @game    = Game.new
+    @seasons = Season.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,7 +35,8 @@ class GamesController < ApplicationController
 
   # GET /games/1/edit
   def edit
-    @game = Game.find(params[:id])
+    @game    = Game.find(params[:id])
+    @seasons = Season.all
   end
 
   # POST /games

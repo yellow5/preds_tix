@@ -48,13 +48,38 @@ describe GamesController do
       get :new
       assigns(:game).should be_a_new(Game)
     end
+
+    context '@seasons' do
+      before do
+        Season.create!(:years => '2011-12')
+        Season.create!(:years => '2012-13')
+      end
+
+      it 'is assigned available seasons' do
+        get :new
+        assigns(:seasons).should eq(Season.all)
+      end
+    end
   end
 
   describe "GET edit" do
+    let(:game) { Game.create! valid_attributes }
+
     it "assigns the requested game as @game" do
-      game = Game.create! valid_attributes
       get :edit, :id => game.id.to_s
       assigns(:game).should eq(game)
+    end
+
+    context '@seasons' do
+      before do
+        Season.create!(:years => '2011-12')
+        Season.create!(:years => '2012-13')
+      end
+
+      it 'is assigned available seasons' do
+        get :edit, :id => game.id.to_s
+        assigns(:seasons).should eq(Season.all)
+      end
     end
   end
 
