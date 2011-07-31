@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :season_id %><br />
-    <%= f.text_field :season_id %>
+    <%= f.select :season_id, @seasons.collect { |s| [ s.years, s.id ] } %>
   </div>
   <div class="field">
     <%= f.label :puck_drop %><br />
