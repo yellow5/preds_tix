@@ -28,10 +28,32 @@ describe GamesController do
   end
 
   describe "GET index" do
-    it "assigns all games as @games" do
-      game = Game.create! valid_attributes
-      get :index
-      assigns(:games).should eq([game])
+    let!(:season) { Season.create! }
+    let!(:newest_season) { Season.create! }
+
+    context '@season' do
+      it 'is assigned the newest season' do
+        get :index
+        assigns(:season).should eq(newest_season)
+      end
+    end
+
+    context '@games' do
+      let!(:excluded_game) do
+        Game.create!(
+          valid_attributes.merge({ :season_id => season.id })
+        )
+      end
+      let!(:game) do
+        Game.create!(
+          valid_attributes.merge({ :season_id => newest_season.id })
+        )
+      end
+
+      it "assigns all games part of @season as @games" do
+        get :index
+        assigns(:games).should eq([game])
+      end
     end
   end
 

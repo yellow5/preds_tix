@@ -2,7 +2,8 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.xml
   def index
-    @games = Game.all
+    @season = Season.last
+    @games  = Game.all(:conditions => { :season_id => @season.id })
 
     respond_to do |format|
       format.html # index.html.erb
