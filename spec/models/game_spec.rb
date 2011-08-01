@@ -99,4 +99,30 @@ describe Game do
       end
     end
   end
+
+  describe '#available_tickets' do
+    let!(:game) { Game.create! }
+    let!(:ticket_holder) { TicketHolder.create! }
+    let(:expected_available_tickets) { Array.new }
+
+    before do
+      game.tickets.each_with_index do |ticket, index|
+        if index == 0
+          expected_available_tickets << ticket
+        else
+          ticket.update_attributes!(:ticket_holder_id => ticket_holder.id)
+        end
+      end
+    end
+
+    subject { game }
+
+    it 'is responded to' do
+      subject.should respond_to(:available_tickets)
+    end
+
+    it 'returns available tickets for the game' do
+      subject.available_tickets.should eq(expected_available_tickets)
+    end
+  end
 end

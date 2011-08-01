@@ -4,6 +4,10 @@ class Game < ActiveRecord::Base
 
   after_create :create_game_tickets!
 
+  def available_tickets
+    tickets.collect { |ticket| ticket if ticket.available? }.compact
+  end
+
   private
 
   def create_game_tickets!
