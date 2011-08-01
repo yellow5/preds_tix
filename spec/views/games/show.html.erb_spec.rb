@@ -1,12 +1,20 @@
 require 'spec_helper'
 
 describe "games/show.html.erb" do
+  let(:puck_drop) { 2.months.from_now }
+
   before(:each) do
     @game = assign(:game, stub_model(Game,
       :season_id => 1,
-      :opponent => "Opponent",
-      :preseason => false
+      :opponent  => "Opponent",
+      :preseason => false,
+      :puck_drop => puck_drop
     ))
+  end
+
+  it 'displays puck_drop and opponent in header' do
+    render
+    rendered.should match("#{@game.puck_drop.to_s(:pretty)} - #{@game.opponent}")
   end
 
   it "renders attributes in <p>" do

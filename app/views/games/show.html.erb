@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= "#{@game.puck_drop.to_s(:pretty)} - #{@game.opponent}" %></h1>
+
 <p>
   <b>Season:</b>
   <%= @game.season_id %>
