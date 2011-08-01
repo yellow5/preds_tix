@@ -6,18 +6,14 @@
     <th>Opponent</th>
     <th>Preseason?</th>
     <th>Seats Available</th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @games.each do |game| %>
   <tr>
-    <td><%= game.puck_drop.to_s(:pretty) %></td>
+    <td><%= link_to game.puck_drop.to_s(:pretty), game %></td>
     <td><%= game.opponent %></td>
     <td><%= 'Y' if game.preseason? %></td>
     <td><%= game.available_tickets.count %></td>
-    <td><%= link_to 'Show', game %></td>
-    <td><%= link_to 'Edit', edit_game_path(game) %></td>
   </tr>
 <% end %>
 </table>
