@@ -5,6 +5,7 @@
     <th>Puck Drop</th>
     <th>Opponent</th>
     <th>Preseason?</th>
+    <th>Seats Available</th>
     <th></th>
     <th></th>
   </tr>
@@ -14,6 +15,7 @@
     <td><%= game.puck_drop.to_s(:pretty) %></td>
     <td><%= game.opponent %></td>
     <td><%= 'Y' if game.preseason? %></td>
+    <td><%= game.available_tickets.count %></td>
     <td><%= link_to 'Show', game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
   </tr>

@@ -38,5 +38,6 @@ describe "games/index.html.erb" do
     assert_select "tr>td", :text => 'Y', :count => 1
     assert_select 'tr>td', :text => puck_drop2.to_s(:pretty), :count => 1
     assert_select "tr>td", :text => game2.opponent, :count => 1
+    assert_select 'tr>td', :text => '4', :count => 2
   end
 end
