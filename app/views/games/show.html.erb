@@ -2,25 +2,11 @@
 
 <h1><%= "#{@game.puck_drop.to_s(:pretty)} - #{@game.opponent}" %></h1>
 
-<p>
-  <b>Season:</b>
-  <%= @game.season_id %>
-</p>
-
-<p>
-  <b>Puck drop:</b>
-  <%= @game.puck_drop %>
-</p>
-
-<p>
-  <b>Opponent:</b>
-  <%= @game.opponent %>
-</p>
-
-<p>
-  <b>Preseason:</b>
-  <%= @game.preseason %>
-</p>
+<% if @game.preseason? %>
+  <p>Preseason</p>
+<% else %>
+  <p>Regular Season</p>
+<% end %>
 
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
