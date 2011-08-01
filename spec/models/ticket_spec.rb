@@ -56,4 +56,31 @@ describe Ticket do
       end
     end
   end
+
+  describe '#available?' do
+    it 'is responded to' do
+      subject.should respond_to(:available?)
+    end
+
+    context 'ticket_holder_id is nil' do
+      let(:ticket) { Ticket.create!(:ticket_holder_id => nil) }
+
+      subject { ticket }
+
+      it 'returns true' do
+        subject.available?.should be_true
+      end
+    end
+
+    context 'ticket_holder_id is defined' do
+      let(:ticket_holder) { TicketHolder.create! }
+      let(:ticket) { Ticket.create!(:ticket_holder_id => ticket_holder.id) }
+
+      subject { ticket }
+
+      it 'returns false' do
+        subject.available?.should be_false
+      end
+    end
+  end
 end
