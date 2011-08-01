@@ -61,4 +61,40 @@ describe TicketHolder do
       end
     end
   end
+
+  describe '#max_tickets_claimed?' do
+    let!(:ticket_holder) { TicketHolder.create! }
+
+    subject { ticket_holder }
+
+    it 'is responded to' do
+      subject.should respond_to(:max_tickets_claimed?)
+    end
+
+    context 'claimed ticket count < 15' do
+      before do
+        14.times do
+          ticket_holder.tickets.create!
+        end
+      end
+
+      it 'returns false' do
+        subject.max_tickets_claimed?.should be_false
+      end
+    end
+
+    context 'claimed_ticket count >= 15' do
+      before do
+        15.times do
+          ticket_holder.tickets.create!
+        end
+      end
+
+      it 'returns true' do
+        subject.max_tickets_claimed?.should be_true
+        subject.tickets.create!
+        subject.max_tickets_claimed?.should be_true
+      end
+    end
+  end
 end
