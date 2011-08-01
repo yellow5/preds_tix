@@ -92,8 +92,6 @@ describe TicketHolder do
 
       it 'returns true' do
         subject.max_tickets_claimed?.should be_true
-        subject.tickets.create!
-        subject.max_tickets_claimed?.should be_true
       end
     end
   end

@@ -57,6 +57,42 @@ describe Ticket do
     end
   end
 
+  describe 'validations' do
+    context 'holder ticket count' do
+      let!(:ticket_holder) { TicketHolder.create! }
+
+      context 'valid' do
+        it 'is under the max' do
+          subject.ticket_holder_id = ticket_holder.id
+          subject.should be_valid
+        end
+      end
+
+      context 'invalid' do
+        let(:expected_error_msg) { [ 'must be ticket holder who does not have the maximum tickets' ] }
+
+        before do
+          15.times { ticket_holder.tickets.create! }
+          subject.ticket_holder_id = ticket_holder.id
+        end
+
+        it 'is at the max' do
+          subject.should be_invalid
+        end
+
+        it 'adds error on ticket_holder_id' do
+          subject.valid?
+          subject.should have(1).error_on(:ticket_holder_id)
+        end
+
+        it 'adds max tickets message to errors' do
+          subject.valid?
+          subject.errors[:ticket_holder_id].should eq(expected_error_msg)
+        end
+      end
+    end
+  end
+
   describe '#available?' do
     it 'is responded to' do
       subject.should respond_to(:available?)
