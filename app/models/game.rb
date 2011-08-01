@@ -11,8 +11,6 @@ class Game < ActiveRecord::Base
   private
 
   def create_game_tickets!
-    4.times do
-      tickets.create!
-    end
+    4.times { tickets.create! }
   end
 end

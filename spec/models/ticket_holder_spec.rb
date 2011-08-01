@@ -73,9 +73,7 @@ describe TicketHolder do
 
     context 'claimed ticket count < 15' do
       before do
-        14.times do
-          ticket_holder.tickets.create!
-        end
+        14.times { ticket_holder.tickets.create! }
       end
 
       it 'returns false' do
@@ -85,9 +83,7 @@ describe TicketHolder do
 
     context 'claimed_ticket count >= 15' do
       before do
-        15.times do
-          ticket_holder.tickets.create!
-        end
+        15.times { ticket_holder.tickets.create! }
       end
 
       it 'returns true' do
