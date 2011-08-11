@@ -63,6 +63,28 @@ describe GamesController do
       get :show, :id => game.id.to_s
       assigns(:game).should eq(game)
     end
+
+    context '@ticket_holders' do
+      let!(:season) { Season.create! }
+      let!(:other_season) { Season.create! }
+      let!(:game) { Game.create!(valid_attributes.merge(:season_id => season.id)) }
+      let!(:ticket_holder1) { TicketHolder.create!(:season_id => season.id) }
+      let!(:ticket_holder2) { TicketHolder.create!(:season_id => season.id) }
+      let!(:other_season_ticket_holder) do
+        TicketHolder.create!(:season_id => other_season.id)
+      end
+      let!(:over_limit_ticket_holder) do
+        TicketHolder.create!(:season_id => season.id).tap do |ticket_holder|
+          15.times { ticket_holder.tickets.create!(:game_id => game.id) }
+        end
+      end
+      let(:expected_ticket_holders) { [ticket_holder1, ticket_holder2] }
+
+      it 'assigns all ticket holders within game season under the limit' do
+        get :show, :id => game.id.to_s
+        assigns(:ticket_holders).should eq(expected_ticket_holders)
+      end
+    end
   end
 
   describe "GET new" do

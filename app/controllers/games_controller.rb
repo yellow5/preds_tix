@@ -14,7 +14,11 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.xml
   def show
-    @game = Game.find(params[:id])
+    @game           = Game.find(params[:id])
+    @ticket_holders = TicketHolder.where('season_id = ?', @game.season_id)
+    @ticket_holders = @ticket_holders.reject do |ticket_holder|
+      ticket_holder if ticket_holder.max_tickets_claimed?
+    end
 
     respond_to do |format|
       format.html # show.html.erb
