@@ -4,6 +4,10 @@ class Game < ActiveRecord::Base
 
   after_create :create_game_tickets!
 
+  def puck_drop
+    self[:puck_drop] || Time.parse("#{Date.today} 19:00:00")
+  end
+
   def available_tickets
     tickets.collect { |ticket| ticket if ticket.available? }.compact
   end

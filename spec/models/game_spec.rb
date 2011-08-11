@@ -19,9 +19,12 @@ describe Game do
     end
 
     it 'can be assigned' do
-      subject.puck_drop.should be_nil
       subject.puck_drop = 1.month.from_now
       subject.puck_drop.to_s.should eq(1.month.from_now.to_s)
+    end
+
+    it 'defaults to today at 7pm' do
+      subject.puck_drop.to_s(:db).should == "#{Date.today} 19:00:00"
     end
   end
 
