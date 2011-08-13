@@ -8,6 +8,21 @@
   <p>Regular Season</p>
 <% end %>
 
+<ul>
+  <% @game.tickets.each_with_index do |ticket, index| %>
+    <li>
+      <%= form_for(ticket) do |t| %>
+        <%= "Ticket #{index + 1}" %>
+        <%= t.select(
+              :ticket_holder_id,
+              @ticket_holders.collect { |th| [th.name, th.id] },
+              :prompt => true
+            ) %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
