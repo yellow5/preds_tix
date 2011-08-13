@@ -97,6 +97,12 @@ describe TicketsController do
 
   describe "PUT update" do
     describe "with valid params" do
+      let!(:expected_referer) { '/' }
+
+      before do
+        request.env['HTTP_REFERER'] = expected_referer
+      end
+
       it "updates the requested ticket" do
         ticket = Ticket.create! valid_attributes
         # Assuming there are no other tickets in the database, this
@@ -116,7 +122,7 @@ describe TicketsController do
       it "redirects to the ticket" do
         ticket = Ticket.create! valid_attributes
         put :update, :id => ticket.id, :ticket => valid_attributes
-        response.should redirect_to(ticket)
+        response.should redirect_to(expected_referer)
       end
     end
 

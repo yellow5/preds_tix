@@ -60,7 +60,7 @@ class TicketsController < ApplicationController
 
     respond_to do |format|
       if @ticket.update_attributes(params[:ticket])
-        format.html { redirect_to(@ticket, :notice => 'Ticket was successfully updated.') }
+        format.html { redirect_to(:back, :notice => 'Ticket was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
