@@ -48,7 +48,7 @@ describe "games/show.html.erb" do
     end
   end
 
-  context 'tickets' do
+  context 'tickets without ticket holder assigned' do
     it 'shows a form for each ticket' do
       render
       game.tickets.each do |ticket|
@@ -74,6 +74,38 @@ describe "games/show.html.erb" do
     it 'shows an update button' do
       render
       assert_select "input[type='submit'][value='Update']", :count => 4
+    end
+  end
+
+  context 'tickets with ticket holder assigned' do
+    before do
+      game.tickets.each_with_index do |ticket, index|
+        ticket_holder = index % 2 == 0 ? ticket_holder1 : ticket_holder2
+        ticket.update_attributes!(:ticket_holder_id => ticket_holder.id)
+      end
+    end
+
+    it 'does not show a form for each ticket' do
+      render
+      assert_select 'form', false, 'This page should have no form'
+    end
+
+    it 'does not show ticket holder options' do
+      render
+      assert_select 'select>option', false, 'This page should have no selector'
+    end
+
+    it 'does not show an update button' do
+      render
+      assert_select "input[type='submit'][value='Update']", false, 'This page should have no submit button'
+    end
+
+    it 'shows game tickets with ticket holder name' do
+      render
+      assert_select 'ul>li', /Ticket 1 belongs to #{ticket_holder1.name}/
+      assert_select 'ul>li', /Ticket 2 belongs to #{ticket_holder2.name}/
+      assert_select 'ul>li', /Ticket 3 belongs to #{ticket_holder1.name}/
+      assert_select 'ul>li', /Ticket 4 belongs to #{ticket_holder2.name}/
     end
   end
 end
