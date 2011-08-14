@@ -18,6 +18,7 @@
               @ticket_holders.collect { |th| [th.name, th.id] },
               :prompt => true
             ) %>
+        <%= submit_tag('Update') %>
       <% end %>
     </li>
   <% end %>

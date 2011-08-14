@@ -70,5 +70,10 @@ describe "games/show.html.erb" do
       assert_select 'select>option', :text => ticket_holder1.name, :count => 4
       assert_select 'select>option', :text => ticket_holder2.name, :count => 4
     end
+
+    it 'shows an update button' do
+      render
+      assert_select "input[type='submit'][value='Update']", :count => 4
+    end
   end
 end
