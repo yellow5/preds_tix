@@ -60,6 +60,35 @@ describe TicketHolder do
         subject.tickets.should eq(expected_tickets)
       end
     end
+
+    context 'games through tickets' do
+      let!(:ticket_holder) { TicketHolder.create! }
+      let!(:expected_games) { [game1, game2] }
+      let(:game1) do
+        Game.create!.tap do |game|
+          2.times do
+            game.tickets.create!(:ticket_holder_id => ticket_holder.id)
+          end
+        end
+      end
+      let(:game2) do
+        Game.create!.tap do |game|
+          2.times do
+            game.tickets.create!(:ticket_holder_id => ticket_holder.id)
+          end
+        end
+      end
+
+      subject { ticket_holder }
+
+      it 'is established' do
+        subject.should respond_to(:games)
+      end
+
+      it 'returns grouped related records' do
+        subject.games.should eq(expected_games)
+      end
+    end
   end
 
   describe '#max_tickets_claimed?' do
