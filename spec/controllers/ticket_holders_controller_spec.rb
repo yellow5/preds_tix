@@ -36,10 +36,32 @@ describe TicketHoldersController do
   end
 
   describe "GET show" do
+    let(:ticket_holder) { TicketHolder.create!(valid_attributes) }
+
     it "assigns the requested ticket_holder as @ticket_holder" do
-      ticket_holder = TicketHolder.create! valid_attributes
       get :show, :id => ticket_holder.id.to_s
       assigns(:ticket_holder).should eq(ticket_holder)
+    end
+
+    context '@games' do
+      before do
+        Game.create!
+        Game.create!.tap do |game|
+          game.tickets.each do |ticket|
+            ticket.update_attributes!(:ticket_holder_id => ticket_holder.id)
+          end
+        end
+        Game.create!.tap do |game|
+          game.tickets.each do |ticket|
+            ticket.update_attributes!(:ticket_holder_id => ticket_holder.id)
+          end
+        end
+      end
+
+      it 'is assigned @ticket_holder.games' do
+        get :show, :id => ticket_holder.id.to_s
+        assigns(:games).should eq(ticket_holder.games)
+      end
     end
   end
 

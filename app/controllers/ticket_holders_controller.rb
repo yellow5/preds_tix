@@ -14,6 +14,7 @@ class TicketHoldersController < ApplicationController
   # GET /ticket_holders/1.xml
   def show
     @ticket_holder = TicketHolder.find(params[:id])
+    @games         = @ticket_holder.games
 
     respond_to do |format|
       format.html # show.html.erb
