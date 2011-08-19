@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110731010238) do
+ActiveRecord::Schema.define(:version => 20110819030938) do
 
   create_table "games", :force => true do |t|
     t.integer  "season_id"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20110731010238) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "games", ["season_id"], :name => "index_games_on_season_id"
 
   create_table "seasons", :force => true do |t|
     t.string   "years"
@@ -34,11 +36,16 @@ ActiveRecord::Schema.define(:version => 20110731010238) do
     t.datetime "updated_at"
   end
 
+  add_index "ticket_holders", ["season_id"], :name => "index_ticket_holders_on_season_id"
+
   create_table "tickets", :force => true do |t|
     t.integer  "game_id"
     t.integer  "ticket_holder_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tickets", ["game_id"], :name => "index_tickets_on_game_id"
+  add_index "tickets", ["ticket_holder_id"], :name => "index_tickets_on_ticket_holder_id"
 
 end
