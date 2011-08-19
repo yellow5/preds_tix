@@ -6,7 +6,7 @@ class GamesController < ApplicationController
     @games  = Game.all(:conditions => { :season_id => @season.id })
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.xml  { render :xml => @games }
     end
   end
@@ -21,7 +21,7 @@ class GamesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.xml  { render :xml => @game }
     end
   end
@@ -33,7 +33,7 @@ class GamesController < ApplicationController
     @seasons = Season.all
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.xml  { render :xml => @game }
     end
   end

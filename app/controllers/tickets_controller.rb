@@ -5,7 +5,7 @@ class TicketsController < ApplicationController
     @tickets = Ticket.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.xml  { render :xml => @tickets }
     end
   end
@@ -16,7 +16,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.xml  { render :xml => @ticket }
     end
   end
@@ -27,7 +27,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.xml  { render :xml => @ticket }
     end
   end

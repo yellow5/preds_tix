@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "games/index.html.erb" do
+describe "games/index.html.haml" do
   let(:season) { Season.create!(:years => '2011-12') }
   let(:puck_drop1) { 1.month.from_now }
   let(:puck_drop2) { 2.months.from_now }

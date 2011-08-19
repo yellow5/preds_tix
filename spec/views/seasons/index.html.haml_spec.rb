@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "seasons/index.html.erb" do
+describe "seasons/index.html.haml" do
   before(:each) do
     assign(:seasons, [
       stub_model(Season,
