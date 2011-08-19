@@ -1,0 +1,15 @@
+= form_for(@season) do |f|
+  - if @season.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@season.errors.count, "error")
+        prohibited this season from being saved:
+      %ul
+        - @season.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :years
+    %br/
+    = f.text_field :years
+  .actions
+    = f.submit

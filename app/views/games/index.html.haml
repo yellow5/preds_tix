@@ -1,0 +1,16 @@
+%h1
+  == #{@season.years} Games
+%table
+  %tr
+    %th Puck Drop
+    %th Opponent
+    %th Preseason?
+    %th Seats Available
+  - @games.each do |game|
+    %tr
+      %td= link_to game.puck_drop.to_s(:pretty), game
+      %td= game.opponent
+      %td= 'Y' if game.preseason?
+      %td= game.available_tickets.count
+%br/
+= link_to 'New Game', new_game_path

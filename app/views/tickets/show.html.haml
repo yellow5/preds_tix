@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %b Game:
+  = @ticket.game_id
+%p
+  %b Ticket holder:
+  = @ticket.ticket_holder_id
+= link_to 'Edit', edit_ticket_path(@ticket)
+|
+\#{link_to 'Back', tickets_path}

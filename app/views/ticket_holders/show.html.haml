@@ -1,0 +1,17 @@
+%p#notice= notice
+%h1= "#{@ticket_holder.name}'s Games in #{@ticket_holder.season.years}"
+%table
+  %tr
+    %th Puck Drop
+    %th Opponent
+    %th Preseason?
+    %th Tickets
+  - @games.each do |game|
+    %tr
+      %td= link_to game.puck_drop.to_s(:pretty), game
+      %td= game.opponent
+      %td= 'Y' if game.preseason?
+      %td= game.tickets_belonging_to(@ticket_holder).count
+= link_to 'Edit', edit_ticket_holder_path(@ticket_holder)
+|
+\#{link_to 'Back', ticket_holders_path}

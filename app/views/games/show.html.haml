@@ -1,0 +1,23 @@
+%p#notice= notice
+%h1= "#{@game.puck_drop.to_s(:pretty)} - #{@game.opponent}"
+- if @game.preseason?
+  %p Preseason
+- else
+  %p Regular Season
+%ul
+  - @game.tickets.each_with_index do |ticket, index|
+    %li
+      - if ticket.holder
+        = "Ticket #{index + 1} belongs to #{ticket.holder.name}"
+      - else
+        = form_for(ticket) do |t|
+          = "Ticket #{index + 1}"
+          = t.select(                                            |
+              :ticket_holder_id,                                 |
+              @ticket_holders.collect { |th| [th.name, th.id] }, |
+              :prompt => true                                    |
+            )                                                    |
+          = submit_tag('Update')
+= link_to 'Edit', edit_game_path(@game)
+|
+\#{link_to 'Back', games_path}

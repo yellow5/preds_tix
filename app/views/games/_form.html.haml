@@ -1,0 +1,27 @@
+= form_for(@game) do |f|
+  - if @game.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@game.errors.count, "error")
+        prohibited this game from being saved:
+      %ul
+        - @game.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :season_id
+    %br/
+    = f.select :season_id, @seasons.collect { |s| [ s.years, s.id ] }
+  .field
+    = f.label :puck_drop
+    %br/
+    = f.datetime_select :puck_drop
+  .field
+    = f.label :opponent
+    %br/
+    = f.text_field :opponent
+  .field
+    = f.label :preseason
+    %br/
+    = f.check_box :preseason
+  .actions
+    = f.submit
