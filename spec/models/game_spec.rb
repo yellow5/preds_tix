@@ -128,4 +128,28 @@ describe Game do
       subject.available_tickets.should eq(expected_available_tickets)
     end
   end
+
+  describe '#tickets_belonging_to' do
+    let(:game) { Game.create! }
+    let(:ticket_holder) { TicketHolder.create! }
+    let(:expected_tickets) { Array.new }
+
+    before do
+      game.tickets.each_with_index do |ticket, index|
+        if index % 2 == 0
+          ticket.update_attributes!(:ticket_holder_id => ticket_holder.id)
+          expected_tickets << ticket
+        end
+      end
+    end
+
+    subject { game }
+
+    it { should respond_to(:tickets_belonging_to) }
+
+    it 'returns tickets that belong to ticket holder' do
+      received_tickets = game.tickets_belonging_to(ticket_holder)
+      received_tickets.collect(&:id).join(',').should eq(expected_tickets.collect(&:id).join(','))
+    end
+  end
 end

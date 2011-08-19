@@ -12,6 +12,10 @@ class Game < ActiveRecord::Base
     tickets.collect { |ticket| ticket if ticket.available? }.compact
   end
 
+  def tickets_belonging_to(ticket_holder)
+    tickets.all(:conditions => { :ticket_holder_id => ticket_holder })
+  end
+
   private
 
   def create_game_tickets!
