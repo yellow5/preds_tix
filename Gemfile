@@ -8,6 +8,7 @@ gem 'rails', '3.0.9'
 gem 'sqlite3'
 gem 'haml'
 gem 'sass'
+gem 'compass'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.6'
