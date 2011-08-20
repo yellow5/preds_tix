@@ -7,13 +7,13 @@
       %ul
         - @ticket.errors.full_messages.each do |msg|
           %li= msg
-  .field
+  .clearfix
     = f.label :game_id
-    %br/
-    = f.text_field :game_id
-  .field
+    .input
+      = f.text_field :game_id
+  .clearfix
     = f.label :ticket_holder_id
-    %br/
-    = f.text_field :ticket_holder_id
+    .input
+      = f.text_field :ticket_holder_id
   .actions
-    = f.submit
+    = f.submit :class => 'btn primary'
