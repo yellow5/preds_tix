@@ -6,4 +6,13 @@
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
-    = yield
+    .topbar
+      .container.fixed
+        %h3
+          = link_to 'PredsTix', root_path, :class => 'logo'
+        %ul
+          %li
+            = link_to 'Games', root_path
+    .margined-top
+      .container
+        = yield
