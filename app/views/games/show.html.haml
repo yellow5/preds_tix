@@ -11,12 +11,12 @@
       - if ticket.holder
         = "Ticket #{index + 1} belongs to #{ticket.holder.name}"
       - else
-        = form_for(ticket) do |t|
+        = form_for(ticket, :remote => true) do |t|
           = "Ticket #{index + 1}"
           = t.select(                                            |
               :ticket_holder_id,                                 |
               @ticket_holders.collect { |th| [th.name, th.id] }, |
-              :prompt => true                                    |
+              { :prompt => true },                               |
+              { :class  => 'submittable' }                       |
             )                                                    |
-          = submit_tag('Update')
 = link_to 'Edit', edit_game_path(@game)

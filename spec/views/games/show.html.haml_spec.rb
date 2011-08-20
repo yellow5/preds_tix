@@ -70,11 +70,6 @@ describe "games/show.html.haml" do
       assert_select 'select>option', :text => ticket_holder1.name, :count => 4
       assert_select 'select>option', :text => ticket_holder2.name, :count => 4
     end
-
-    it 'shows an update button' do
-      render
-      assert_select "input[type='submit'][value='Update']", :count => 4
-    end
   end
 
   context 'tickets with ticket holder assigned' do
@@ -93,11 +88,6 @@ describe "games/show.html.haml" do
     it 'does not show ticket holder options' do
       render
       assert_select 'select>option', false, 'This page should have no selector'
-    end
-
-    it 'does not show an update button' do
-      render
-      assert_select "input[type='submit'][value='Update']", false, 'This page should have no submit button'
     end
 
     it 'shows game tickets with ticket holder name' do
