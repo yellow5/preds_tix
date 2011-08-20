@@ -75,16 +75,4 @@ class GamesController < ApplicationController
       end
     end
   end
-
-  # DELETE /games/1
-  # DELETE /games/1.xml
-  def destroy
-    @game = Game.find(params[:id])
-    @game.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(games_url) }
-      format.xml  { head :ok }
-    end
-  end
 end

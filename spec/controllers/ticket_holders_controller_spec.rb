@@ -186,19 +186,4 @@ describe TicketHoldersController do
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested ticket_holder" do
-      ticket_holder = TicketHolder.create! valid_attributes
-      expect {
-        delete :destroy, :id => ticket_holder.id.to_s
-      }.to change(TicketHolder, :count).by(-1)
-    end
-
-    it "redirects to the ticket_holders list" do
-      ticket_holder = TicketHolder.create! valid_attributes
-      delete :destroy, :id => ticket_holder.id.to_s
-      response.should redirect_to(ticket_holders_url)
-    end
-  end
-
 end

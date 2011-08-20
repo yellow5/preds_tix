@@ -139,19 +139,4 @@ describe SeasonsController do
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested season" do
-      season = Season.create! valid_attributes
-      expect {
-        delete :destroy, :id => season.id.to_s
-      }.to change(Season, :count).by(-1)
-    end
-
-    it "redirects to the seasons list" do
-      season = Season.create! valid_attributes
-      delete :destroy, :id => season.id.to_s
-      response.should redirect_to(seasons_url)
-    end
-  end
-
 end

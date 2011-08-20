@@ -27,9 +27,5 @@ describe TicketsController do
       put("/tickets/1").should route_to("tickets#update", :id => "1")
     end
 
-    it "routes to #destroy" do
-      delete("/tickets/1").should route_to("tickets#destroy", :id => "1")
-    end
-
   end
 end

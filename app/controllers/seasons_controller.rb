@@ -68,16 +68,4 @@ class SeasonsController < ApplicationController
       end
     end
   end
-
-  # DELETE /seasons/1
-  # DELETE /seasons/1.xml
-  def destroy
-    @season = Season.find(params[:id])
-    @season.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(seasons_url) }
-      format.xml  { head :ok }
-    end
-  end
 end

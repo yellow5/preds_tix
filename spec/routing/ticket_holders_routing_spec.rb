@@ -27,9 +27,5 @@ describe TicketHoldersController do
       put("/ticket_holders/1").should route_to("ticket_holders#update", :id => "1")
     end
 
-    it "routes to #destroy" do
-      delete("/ticket_holders/1").should route_to("ticket_holders#destroy", :id => "1")
-    end
-
   end
 end

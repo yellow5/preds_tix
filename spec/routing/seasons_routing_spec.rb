@@ -27,9 +27,5 @@ describe SeasonsController do
       put("/seasons/1").should route_to("seasons#update", :id => "1")
     end
 
-    it "routes to #destroy" do
-      delete("/seasons/1").should route_to("seasons#destroy", :id => "1")
-    end
-
   end
 end

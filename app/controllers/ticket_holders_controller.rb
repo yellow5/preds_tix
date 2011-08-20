@@ -69,16 +69,4 @@ class TicketHoldersController < ApplicationController
       end
     end
   end
-
-  # DELETE /ticket_holders/1
-  # DELETE /ticket_holders/1.xml
-  def destroy
-    @ticket_holder = TicketHolder.find(params[:id])
-    @ticket_holder.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(ticket_holders_url) }
-      format.xml  { head :ok }
-    end
-  end
 end

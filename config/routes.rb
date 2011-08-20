@@ -1,11 +1,11 @@
 PredsTix::Application.routes.draw do
-  resources :tickets
+  resources :tickets, :except => [:destroy]
 
-  resources :games
+  resources :games, :except => [:destroy]
 
-  resources :ticket_holders
+  resources :ticket_holders, :except => [:destroy]
 
-  resources :seasons
+  resources :seasons, :except => [:destroy]
 
   root :to => 'games#index'
 

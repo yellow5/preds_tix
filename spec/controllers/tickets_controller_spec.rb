@@ -145,19 +145,4 @@ describe TicketsController do
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested ticket" do
-      ticket = Ticket.create! valid_attributes
-      expect {
-        delete :destroy, :id => ticket.id.to_s
-      }.to change(Ticket, :count).by(-1)
-    end
-
-    it "redirects to the tickets list" do
-      ticket = Ticket.create! valid_attributes
-      delete :destroy, :id => ticket.id.to_s
-      response.should redirect_to(tickets_url)
-    end
-  end
-
 end
