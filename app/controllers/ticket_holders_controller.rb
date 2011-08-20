@@ -2,8 +2,6 @@ class TicketHoldersController < ApplicationController
   # GET /ticket_holders
   # GET /ticket_holders.xml
   def index
-    @ticket_holders = TicketHolder.all
-
     respond_to do |format|
       format.html # index.html.haml
       format.xml  { render :xml => @ticket_holders }

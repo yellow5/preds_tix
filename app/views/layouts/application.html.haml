@@ -13,6 +13,12 @@
         %ul
           %li
             = link_to 'Games', root_path
+        %ul.nav.secondary-nav
+          %li.menu
+            = link_to 'Ticket Holders', '#', :class => 'menu'
+            %ul.menu-dropdown
+              - @ticket_holders.each do |ticket_holder|
+                %li= link_to(ticket_holder.name, ticket_holder)
     .margined-top
       .container
         = yield
