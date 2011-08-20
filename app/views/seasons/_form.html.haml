@@ -7,9 +7,9 @@
       %ul
         - @season.errors.full_messages.each do |msg|
           %li= msg
-  .field
+  .clearfix
     = f.label :years
-    %br/
-    = f.text_field :years
+    .input
+      = f.text_field :years
   .actions
-    = f.submit
+    = f.submit :class => 'btn primary'

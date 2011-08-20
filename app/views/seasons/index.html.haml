@@ -1,8 +1,8 @@
-%h1 Listing seasons
-%table
+.page-header
+  %h2 Listing Seasons
+%table.zebra-striped
   %tr
     %th Years
-    %th
     %th
     %th
   - @seasons.each do |season|
@@ -10,6 +10,5 @@
       %td= season.years
       %td= link_to 'Show', season
       %td= link_to 'Edit', edit_season_path(season)
-      %td= link_to 'Destroy', season, :confirm => 'Are you sure?', :method => :delete
 %br/
 = link_to 'New Season', new_season_path
