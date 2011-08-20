@@ -7,21 +7,22 @@
       %ul
         - @game.errors.full_messages.each do |msg|
           %li= msg
-  .field
+  .clearfix
     = f.label :season_id
-    %br/
-    = f.select :season_id, @seasons.collect { |s| [ s.years, s.id ] }
-  .field
+    .input
+      = f.select :season_id, @seasons.collect { |s| [ s.years, s.id ] }
+  .clearfix
     = f.label :puck_drop
-    %br/
-    = f.datetime_select :puck_drop
-  .field
+    .input
+      .inline-inputs
+        = f.datetime_select :puck_drop, {}, :class => 'small'
+  .clearfix
     = f.label :opponent
-    %br/
-    = f.text_field :opponent
-  .field
+    .input
+      = f.text_field :opponent
+  .clearfix
     = f.label :preseason
-    %br/
-    = f.check_box :preseason
+    .input
+      = f.check_box :preseason
   .actions
-    = f.submit
+    = f.submit :class => 'btn primary'

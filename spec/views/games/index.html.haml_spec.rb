@@ -28,7 +28,7 @@ describe "games/index.html.haml" do
 
   it 'displays season years in header' do
     render
-    assert_select 'h1', :text => "#{season.years} Games"
+    assert_select 'h2', :text => "#{season.years} Games"
   end
 
   it "renders a list of games" do

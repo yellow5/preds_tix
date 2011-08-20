@@ -12,6 +12,11 @@ describe "games/edit.html.haml" do
     assign(:seasons, Season.all)
   end
 
+  it 'displays opponent in header' do
+    render
+    rendered.should match("Editing #{@game.opponent} Game")
+  end
+
   it "renders the edit game form" do
     render
 

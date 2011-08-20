@@ -1,5 +1,6 @@
+.page-header
+  %h2= "#{@game.puck_drop.to_s(:pretty)} - #{@game.opponent}"
 %p#notice= notice
-%h1= "#{@game.puck_drop.to_s(:pretty)} - #{@game.opponent}"
 - if @game.preseason?
   %p Preseason
 - else
@@ -19,5 +20,3 @@
             )                                                    |
           = submit_tag('Update')
 = link_to 'Edit', edit_game_path(@game)
-|
-\#{link_to 'Back', games_path}
