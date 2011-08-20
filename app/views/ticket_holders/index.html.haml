@@ -1,9 +1,9 @@
-%h1 Listing ticket_holders
-%table
+.page-header
+  %h2 Ticket Holders
+%table.zebra-striped
   %tr
     %th Season
     %th Name
-    %th
     %th
     %th
   - @ticket_holders.each do |ticket_holder|
@@ -12,6 +12,5 @@
       %td= ticket_holder.name
       %td= link_to 'Show', ticket_holder
       %td= link_to 'Edit', edit_ticket_holder_path(ticket_holder)
-      %td= link_to 'Destroy', ticket_holder, :confirm => 'Are you sure?', :method => :delete
 %br/
-= link_to 'New Ticket holder', new_ticket_holder_path
+= link_to 'New Ticket Holder', new_ticket_holder_path

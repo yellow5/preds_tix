@@ -11,6 +11,11 @@ describe "ticket_holders/edit.html.haml" do
     assign(:seasons, Season.all)
   end
 
+  it 'displays ticket holder name in header' do
+    render
+    rendered.should match("Editing Ticket Holder - #{@ticket_holder.name}")
+  end
+
   it "renders the edit ticket_holder form" do
     render
 

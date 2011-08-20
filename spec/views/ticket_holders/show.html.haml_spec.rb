@@ -36,7 +36,7 @@ describe "ticket_holders/show.html.haml" do
 
   it 'displays name and season years in header' do
     render
-    assert_select 'h1', :text => "#{ticket_holder.name}'s Games in #{season.years}"
+    assert_select 'h2', :text => "#{ticket_holder.name}'s Games in #{season.years}"
   end
 
   it "renders a list of ticket holder's games" do

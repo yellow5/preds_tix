@@ -1,6 +1,7 @@
+.page-header
+  %h2= "#{@ticket_holder.name}'s Games in #{@ticket_holder.season.years}"
 %p#notice= notice
-%h1= "#{@ticket_holder.name}'s Games in #{@ticket_holder.season.years}"
-%table
+%table.zebra-striped
   %tr
     %th Puck Drop
     %th Opponent
@@ -13,5 +14,3 @@
       %td= 'Y' if game.preseason?
       %td= game.tickets_belonging_to(@ticket_holder).count
 = link_to 'Edit', edit_ticket_holder_path(@ticket_holder)
-|
-\#{link_to 'Back', ticket_holders_path}
