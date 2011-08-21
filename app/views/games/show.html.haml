@@ -1,6 +1,6 @@
 .page-header
   %h2= "#{@game.puck_drop.to_s(:pretty)} - #{@game.opponent}"
-%p#notice= notice
+= render 'shared/notice', :notice => notice
 - if @game.preseason?
   %p Preseason
 - else
