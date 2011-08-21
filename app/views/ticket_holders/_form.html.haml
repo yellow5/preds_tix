@@ -1,12 +1,13 @@
 = form_for(@ticket_holder) do |f|
   - if @ticket_holder.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@ticket_holder.errors.count, "error")
-        prohibited this ticket_holder from being saved:
-      %ul
-        - @ticket_holder.errors.full_messages.each do |msg|
-          %li= msg
+    .alert-message.block-message.error
+      %p.side-padded
+        %strong
+          = pluralize(@ticket_holder.errors.count, "error")
+          prohibited this ticket_holder from being saved:
+        %ul
+          - @ticket_holder.errors.full_messages.each do |msg|
+            %li= msg
   .clearfix
     = f.label :season_id
     .input
