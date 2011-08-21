@@ -63,7 +63,8 @@ class GamesController < ApplicationController
   # PUT /games/1
   # PUT /games/1.xml
   def update
-    @game = Game.find(params[:id])
+    @game    = Game.find(params[:id])
+    @seasons = Season.all
 
     respond_to do |format|
       if @game.update_attributes(params[:game])

@@ -190,8 +190,9 @@ describe GamesController do
     end
 
     describe "with invalid params" do
+      let(:game) { Game.create! valid_attributes }
+
       it "assigns the game as @game" do
-        game = Game.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Game.any_instance.stub(:save).and_return(false)
         put :update, :id => game.id.to_s, :game => {}
@@ -199,11 +200,22 @@ describe GamesController do
       end
 
       it "re-renders the 'edit' template" do
-        game = Game.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Game.any_instance.stub(:save).and_return(false)
         put :update, :id => game.id.to_s, :game => {}
         response.should render_template("edit")
+      end
+
+      context '@seasons' do
+        before do
+          Season.create!(:years => '2011-12')
+          Season.create!(:years => '2012-13')
+        end
+
+        it 'is assigned available seasons' do
+          put :update, :id => game.id.to_s, :game => {}
+          assigns(:seasons).should eq(Season.all)
+        end
       end
     end
   end

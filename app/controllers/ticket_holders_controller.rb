@@ -58,6 +58,7 @@ class TicketHoldersController < ApplicationController
   # PUT /ticket_holders/1.xml
   def update
     @ticket_holder = TicketHolder.find(params[:id])
+    @seasons       = Season.all
 
     respond_to do |format|
       if @ticket_holder.update_attributes(params[:ticket_holder])

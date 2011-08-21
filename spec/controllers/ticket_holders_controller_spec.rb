@@ -168,8 +168,9 @@ describe TicketHoldersController do
     end
 
     describe "with invalid params" do
+      let(:ticket_holder) { TicketHolder.create! valid_attributes }
+
       it "assigns the ticket_holder as @ticket_holder" do
-        ticket_holder = TicketHolder.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         TicketHolder.any_instance.stub(:save).and_return(false)
         put :update, :id => ticket_holder.id.to_s, :ticket_holder => {}
@@ -177,11 +178,22 @@ describe TicketHoldersController do
       end
 
       it "re-renders the 'edit' template" do
-        ticket_holder = TicketHolder.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         TicketHolder.any_instance.stub(:save).and_return(false)
         put :update, :id => ticket_holder.id.to_s, :ticket_holder => {}
         response.should render_template("edit")
+      end
+
+      context '@seasons' do
+        before do
+          Season.create!(:years => '2011-12')
+          Season.create!(:years => '2012-13')
+        end
+
+        it 'is assigned available seasons' do
+          put :update, :id => ticket_holder.id.to_s, :ticket_holder => {}
+          assigns(:seasons).should eq(Season.all)
+        end
       end
     end
   end
