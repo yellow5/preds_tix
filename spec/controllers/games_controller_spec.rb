@@ -44,15 +44,20 @@ describe GamesController do
           valid_attributes.merge({ :season_id => season.id })
         )
       end
-      let!(:game) do
+      let!(:game1) do
         Game.create!(
-          valid_attributes.merge({ :season_id => newest_season.id })
+          valid_attributes.merge({ :season_id => newest_season.id, :puck_drop => 2.months.from_now})
+        )
+      end
+      let!(:game2) do
+        Game.create!(
+          valid_attributes.merge({ :season_id => newest_season.id, :puck_drop => 1.month.from_now })
         )
       end
 
-      it "assigns all games part of @season as @games" do
+      it "assigns all games part of @season as @games sorted by puck_drop" do
         get :index
-        assigns(:games).should eq([game])
+        assigns(:games).should eq([game2, game1])
       end
     end
   end
