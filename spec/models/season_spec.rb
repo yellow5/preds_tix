@@ -16,12 +16,9 @@ describe Season do
   describe 'associations' do
     context 'games' do
       let!(:season) { Season.create! }
-      let!(:expected_games) do
-        [
-          Game.create!(:season_id => season.id),
-          Game.create!(:season_id => season.id)
-        ]
-      end
+      let!(:game1) { Game.create!(:season_id => season.id) }
+      let!(:game2) { Game.create!(:season_id => season.id) }
+      let(:expected_games) { [ game2, game1 ] }
 
       subject { season }
 
@@ -36,12 +33,9 @@ describe Season do
 
     context 'ticket_holders' do
       let!(:season) { Season.create! }
-      let!(:expected_ticket_holders) do
-        [
-          TicketHolder.create!(:season_id => season.id),
-          TicketHolder.create!(:season_id => season.id)
-        ]
-      end
+      let!(:ticket_holder1) { TicketHolder.create!(:season_id => season.id) }
+      let!(:ticket_holder2) { TicketHolder.create!(:season_id => season.id) }
+      let(:expected_ticket_holders) { [ ticket_holder2, ticket_holder1 ] }
 
       subject { season }
 
