@@ -63,21 +63,21 @@ describe TicketHolder do
 
     context 'games through tickets' do
       let!(:ticket_holder) { TicketHolder.create! }
-      let!(:expected_games) { [game1, game2] }
-      let(:game1) do
-        Game.create!.tap do |game|
+      let!(:game1) do
+        Game.create!(:puck_drop => 1.weeks.from_now).tap do |game|
           2.times do
             game.tickets.create!(:ticket_holder_id => ticket_holder.id)
           end
         end
       end
-      let(:game2) do
-        Game.create!.tap do |game|
+      let!(:game2) do
+        Game.create!(:puck_drop => 2.week.from_now).tap do |game|
           2.times do
             game.tickets.create!(:ticket_holder_id => ticket_holder.id)
           end
         end
       end
+      let(:expected_games) { [ game1, game2 ] }
 
       subject { ticket_holder }
 
@@ -85,7 +85,7 @@ describe TicketHolder do
         subject.should respond_to(:games)
       end
 
-      it 'returns grouped related records' do
+      it 'returns grouped related records sorte by name' do
         subject.games.should eq(expected_games)
       end
     end
