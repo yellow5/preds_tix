@@ -51,6 +51,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    pg (0.11.0)
     polyglot (0.3.2)
     rack (1.2.3)
     rack-mount (0.6.14)
@@ -110,6 +111,7 @@ PLATFORMS
 DEPENDENCIES
   compass
   haml
+  pg
   rails (= 3.0.10)
   rspec-rails (~> 2.6)
   ruby-debug19
