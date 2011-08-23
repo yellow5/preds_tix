@@ -15,7 +15,7 @@ class GamesController < ApplicationController
   # GET /games/1.xml
   def show
     @game           = Game.find(params[:id])
-    @ticket_holders = TicketHolder.where('season_id = ?', @game.season_id)
+    @ticket_holders = TicketHolder.where('season_id = ?', @game.season_id).order(:name)
     @ticket_holders = @ticket_holders.reject do |ticket_holder|
       ticket_holder if ticket_holder.max_tickets_claimed?
     end
