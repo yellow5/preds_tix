@@ -4,7 +4,7 @@ class CreateGames < ActiveRecord::Migration
       t.integer :season_id
       t.datetime :puck_drop
       t.string :opponent
-      t.boolean :preseason, :default => 0
+      t.boolean :preseason, :default => false
 
       t.timestamps
     end
