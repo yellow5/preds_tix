@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-PredsTix::Application.config.secret_token = '39383089780d98683b01c145a54b563726da38cda81231b0d45fa7c022e4026712e1ea5b543b66c4ea4b2bd9e67c2e0a39a6639885245b1b3bbea6888b3d0dc8'
+PredsTix::Application.config.secret_token = '8276acd402a83cadde9c953a3a7480af468f0d6c650a462f917212cd7601328deb3491b8675f4cc51f7130ef87b3ad7c409efea59e8de18c53616bfb381e3581'
