@@ -7,7 +7,6 @@ gem 'rails', '3.1.0'
 
 gem 'haml'
 gem 'sass'
-gem 'compass'
 gem 'pg'
 
 group :development, :test do
