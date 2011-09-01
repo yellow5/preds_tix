@@ -8,6 +8,7 @@ gem 'rails', '3.1.0'
 gem 'haml'
 gem 'sass'
 gem 'pg'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.6'
