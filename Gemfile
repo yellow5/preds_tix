@@ -18,3 +18,8 @@ end
 group :test do
   gem 'ruby-debug19'
 end
+
+group :production do
+  gem 'uglifier'
+  gem 'therubyracer'
+end
