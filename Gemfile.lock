@@ -108,6 +108,7 @@ GEM
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
     sass (3.1.7)
+    shoulda-matchers (1.0.0.beta3)
     sprockets (2.0.0)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -139,6 +140,7 @@ DEPENDENCIES
   rspec-rails (~> 2.6)
   ruby-debug19
   sass
+  shoulda-matchers
   therubyracer
   thin
   uglifier

@@ -17,6 +17,7 @@ end
 
 group :test do
   gem 'ruby-debug19'
+  gem 'shoulda-matchers'
 end
 
 group :production do
