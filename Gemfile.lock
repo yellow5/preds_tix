@@ -41,6 +41,10 @@ GEM
     eventmachine (0.12.10)
     execjs (1.2.4)
       multi_json (~> 1.0)
+    foreigner (1.1.1)
+      activerecord (>= 3.0.0)
+    foreigner-matcher (0.2.0)
+      foreigner (>= 1.0.0)
     haml (3.1.2)
     hike (1.2.1)
     i18n (0.6.0)
@@ -133,6 +137,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  foreigner
+  foreigner-matcher
   haml
   jquery-rails
   pg

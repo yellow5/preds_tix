@@ -10,6 +10,7 @@ gem 'sass'
 gem 'pg'
 gem 'jquery-rails'
 gem 'thin'
+gem 'foreigner'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.6'
@@ -18,6 +19,7 @@ end
 group :test do
   gem 'ruby-debug19'
   gem 'shoulda-matchers'
+  gem 'foreigner-matcher'
 end
 
 group :production do
