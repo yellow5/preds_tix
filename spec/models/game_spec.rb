@@ -1,91 +1,22 @@
 require 'spec_helper'
 
 describe Game do
-  describe '#season_id' do
-    it 'is available' do
-      subject.should respond_to(:season_id)
-    end
-
-    it 'can be assigned' do
-      subject.season_id.should be_nil
-      subject.season_id = 1
-      subject.season_id.should eq(1)
-    end
+  describe 'attributes' do
+    it { should have_db_column(:season_id).of_type(:integer) }
+    it { should have_db_column(:puck_drop).of_type(:datetime) }
+    it { should have_db_column(:opponent).of_type(:string) }
+    it { should have_db_column(:preseason).of_type(:boolean).with_options(:default => false) }
+    it { should have_db_column(:created_at).of_type(:datetime) }
+    it { should have_db_column(:updated_at).of_type(:datetime) }
   end
 
-  describe '#puck_drop' do
-    it 'is available' do
-      subject.should respond_to(:puck_drop)
-    end
-
-    it 'can be assigned' do
-      subject.puck_drop = 1.month.from_now
-      subject.puck_drop.to_s.should eq(1.month.from_now.to_s)
-    end
-
-    it 'defaults to today at 7pm' do
-      subject.puck_drop.to_s(:db).should == "#{Date.today} 19:00:00"
-    end
-  end
-
-  describe '#opponent' do
-    it 'is available' do
-      subject.should respond_to(:opponent)
-    end
-
-    it 'can be assigned' do
-      subject.opponent.should be_nil
-      subject.opponent = 'Vancouver Canucks'
-      subject.opponent.should eq('Vancouver Canucks')
-    end
-  end
-
-  describe '#preseason' do
-    it 'is available' do
-      subject.should respond_to(:preseason)
-    end
-
-    it 'defaults to false' do
-      subject.preseason.should_not be_nil
-      subject.preseason.should be_false
-    end
-
-    it 'can be assigned' do
-      subject.preseason = true
-      subject.preseason.should be_true
-    end
+  describe 'indexes' do
+    it { should have_db_index(:season_id) }
   end
 
   describe 'associations' do
-    context 'season' do
-      let!(:expected_season) { Season.create! }
-      let!(:game) { Game.create!(:season_id => expected_season.id) }
-
-      subject { game }
-
-      it 'is established' do
-        subject.should respond_to(:season)
-      end
-
-      it 'returns related season' do
-        subject.season.should eq(expected_season)
-      end
-    end
-
-    context 'games' do
-      let!(:game) { Game.create! }
-      let(:expected_tickets) { Ticket.all(:conditions => { :game_id => game.id }) }
-
-      subject { game }
-
-      it 'is established' do
-        subject.should respond_to(:tickets)
-      end
-
-      it 'returns related records' do
-        subject.tickets.should eq(expected_tickets)
-      end
-    end
+    it { should belong_to(:season) }
+    it { should have_many(:tickets) }
   end
 
   describe 'after create' do
