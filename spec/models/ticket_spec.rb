@@ -1,60 +1,21 @@
 require 'spec_helper'
 
 describe Ticket do
-  describe '#game_id' do
-    it 'is available' do
-      subject.should respond_to(:game_id)
-    end
-
-    it 'can be assigned' do
-      subject.game_id.should be_nil
-      subject.game_id = 1
-      subject.game_id.should eq(1)
-    end
+  describe 'attributes' do
+    it { should have_db_column(:game_id).of_type(:integer) }
+    it { should have_db_column(:ticket_holder_id).of_type(:integer) }
+    it { should have_db_column(:created_at).of_type(:datetime) }
+    it { should have_db_column(:updated_at).of_type(:datetime) }
   end
 
-  describe '#ticket_holder_id' do
-    it 'is available' do
-      subject.should respond_to(:ticket_holder_id)
-    end
-
-    it 'can be assigned' do
-      subject.ticket_holder_id.should be_nil
-      subject.ticket_holder_id = 1
-      subject.ticket_holder_id.should eq(1)
-    end
+  describe 'indexes' do
+    it { should have_db_index(:game_id) }
+    it { should have_db_index(:ticket_holder_id) }
   end
 
   describe 'associations' do
-    context 'game' do
-      let!(:expected_game) { Game.create! }
-      let!(:ticket) { Ticket.create!(:game_id => expected_game.id) }
-
-      subject { ticket }
-
-      it 'is established' do
-        subject.should respond_to(:game)
-      end
-
-      it 'returns related game' do
-        subject.game.should eq(expected_game)
-      end
-    end
-
-    context 'holder' do
-      let!(:expected_holder) { TicketHolder.create! }
-      let!(:ticket) { Ticket.create!(:ticket_holder_id => expected_holder.id) }
-
-      subject { ticket }
-
-      it 'is established' do
-        subject.should respond_to(:holder)
-      end
-
-      it 'returns related holder' do
-        subject.holder.should eq(expected_holder)
-      end
-    end
+    it { should belong_to(:game) }
+    it { should belong_to(:holder) }
   end
 
   describe 'validations' do
