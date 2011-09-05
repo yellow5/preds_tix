@@ -13,6 +13,10 @@ describe Ticket do
     it { should have_db_index(:ticket_holder_id) }
   end
 
+  describe 'foreign keys' do
+    it { should have_foreign_key_for(:game, :dependent => :delete) }
+  end
+
   describe 'associations' do
     it { should belong_to(:game) }
     it { should belong_to(:holder) }
