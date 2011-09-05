@@ -1,67 +1,23 @@
 require 'spec_helper'
 
 describe TicketHolder do
-  describe '#season_id' do
-    it 'is available' do
-      subject.should respond_to(:season_id)
-    end
-
-    it 'can be assigned' do
-      subject.season_id.should be_nil
-      subject.season_id = 1
-      subject.season_id.should == 1
-    end
+  describe 'attributes' do
+    it { should have_db_column(:season_id).of_type(:integer) }
+    it { should have_db_column(:name).of_type(:string) }
+    it { should have_db_column(:created_at).of_type(:datetime) }
+    it { should have_db_column(:updated_at).of_type(:datetime) }
   end
 
-  describe '#name' do
-    it 'is available' do
-      subject.should respond_to(:name)
-    end
-
-    it 'can be assigned' do
-      subject.name.should be_nil
-      subject.name = 'Master Yoda'
-      subject.name.should == 'Master Yoda'
-    end
+  describe 'indexes' do
+    it { should have_db_index(:season_id) }
   end
 
   describe 'associations' do
-    context 'season' do
-      let!(:expected_season) { Season.create! }
-      let!(:ticket_holder) { TicketHolder.create!(:season_id => expected_season.id) }
+    it { should belong_to(:season) }
+    it { should have_many(:tickets) }
+    it { should have_many(:games).through(:tickets).order(:puck_drop) }
 
-      subject { ticket_holder }
-
-      it 'is established' do
-        subject.should respond_to(:season)
-      end
-
-      it 'returns related season' do
-        subject.season.should == expected_season
-      end
-    end
-
-    context 'tickets' do
-      let!(:ticket_holder) { TicketHolder.create! }
-      let!(:expected_tickets) do
-        [
-          Ticket.create!(:ticket_holder_id => ticket_holder.id),
-          Ticket.create!(:ticket_holder_id => ticket_holder.id)
-        ]
-      end
-
-      subject { ticket_holder }
-
-      it 'is established' do
-        subject.should respond_to(:tickets)
-      end
-
-      it 'returns related records' do
-        subject.tickets.should eq(expected_tickets)
-      end
-    end
-
-    context 'games through tickets' do
+    context 'unique games' do
       let!(:ticket_holder) { TicketHolder.create! }
       let!(:game1) do
         Game.create!(:puck_drop => 1.weeks.from_now).tap do |game|
@@ -81,11 +37,7 @@ describe TicketHolder do
 
       subject { ticket_holder }
 
-      it 'is established' do
-        subject.should respond_to(:games)
-      end
-
-      it 'returns grouped related records sorte by name' do
+      it 'returns grouped related records' do
         subject.games.should eq(expected_games)
       end
     end
