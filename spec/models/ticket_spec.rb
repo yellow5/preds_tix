@@ -15,6 +15,7 @@ describe Ticket do
 
   describe 'foreign keys' do
     it { should have_foreign_key_for(:game, :dependent => :delete) }
+    it { should have_foreign_key_for(:ticket_holder, :dependent => :nullify) }
   end
 
   describe 'associations' do
