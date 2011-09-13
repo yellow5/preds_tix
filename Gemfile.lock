@@ -32,7 +32,7 @@ GEM
       multi_json (~> 1.0)
     archive-tar-minitar (0.5.2)
     arel (2.2.1)
-    bcrypt-ruby (3.0.0)
+    bcrypt-ruby (3.0.1)
     builder (3.0.0)
     columnize (0.3.4)
     daemons (1.1.4)
