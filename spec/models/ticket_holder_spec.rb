@@ -56,9 +56,9 @@ describe TicketHolder do
       subject.should respond_to(:max_tickets_claimed?)
     end
 
-    context 'claimed ticket count < 15' do
+    context 'claimed ticket count < 18' do
       before do
-        14.times { ticket_holder.tickets.create! }
+        17.times { ticket_holder.tickets.create! }
       end
 
       it 'returns false' do
@@ -66,9 +66,9 @@ describe TicketHolder do
       end
     end
 
-    context 'claimed_ticket count >= 15' do
+    context 'claimed_ticket count >= 18' do
       before do
-        15.times { ticket_holder.tickets.create! }
+        18.times { ticket_holder.tickets.create! }
       end
 
       it 'returns true' do

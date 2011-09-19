@@ -80,7 +80,7 @@ describe GamesController do
       end
       let!(:over_limit_ticket_holder) do
         TicketHolder.create!(:season_id => season.id).tap do |ticket_holder|
-          15.times { ticket_holder.tickets.create!(:game_id => game.id) }
+          18.times { ticket_holder.tickets.create!(:game_id => game.id) }
         end
       end
       let(:expected_ticket_holders) { [ticket_holder1, ticket_holder2] }

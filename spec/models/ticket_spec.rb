@@ -38,7 +38,7 @@ describe Ticket do
         let(:expected_error_msg) { [ 'must be ticket holder who does not have the maximum tickets' ] }
 
         before do
-          15.times { ticket_holder.tickets.create! }
+          18.times { ticket_holder.tickets.create! }
           subject.ticket_holder_id = ticket_holder.id
         end
 
