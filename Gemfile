@@ -14,10 +14,10 @@ gem 'foreigner'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.6'
-  gem 'pry'
 end
 
 group :test do
+  gem 'pry'
   gem 'ruby-debug19'
   gem 'shoulda-matchers'
   gem 'foreigner-matcher'
