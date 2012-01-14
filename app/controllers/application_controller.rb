@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   def assign_ticket_holders!
-    @ticket_holders = TicketHolder.all(:order => 'name')
+    @ticket_holders = TicketHolder.order('name')
   end
 end

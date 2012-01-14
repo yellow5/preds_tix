@@ -3,7 +3,7 @@ class GamesController < ApplicationController
   # GET /games.xml
   def index
     @season = Season.last
-    @games  = Game.all(:conditions => { :season_id => @season.id }, :order => :puck_drop)
+    @games = Game.where(:season_id => @season).order(:puck_drop)
 
     respond_to do |format|
       format.html # index.html.haml
