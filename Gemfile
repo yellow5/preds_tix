@@ -25,5 +25,4 @@ end
 
 group :production do
   gem 'uglifier'
-  gem 'therubyracer'
 end
