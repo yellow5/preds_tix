@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "games/edit.html.haml" do
+describe "games/edit" do
   let!(:season) { Season.create! }
 
   before(:each) do

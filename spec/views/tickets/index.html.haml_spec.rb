@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "tickets/index.html.haml" do
+describe "tickets/index" do
   before(:each) do
     assign(:tickets, [
       stub_model(Ticket,

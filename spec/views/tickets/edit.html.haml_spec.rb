@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "tickets/edit.html.haml" do
+describe "tickets/edit" do
   let(:game) { Game.create!(:opponent => 'Boston Bruins') }
   let!(:ticket) { game.tickets.first }
 

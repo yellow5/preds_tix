@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "games/show.html.haml" do
+describe "games/show" do
   let(:puck_drop) { 2.months.from_now }
   let!(:game) { Game.create!(:puck_drop => puck_drop, :opponent => 'Boston Bruins') }
   let!(:ticket_holder1) { TicketHolder.create!(:name => 'Luke') }

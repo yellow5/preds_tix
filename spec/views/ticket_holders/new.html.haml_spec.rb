@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "ticket_holders/new.html.haml" do
+describe "ticket_holders/new" do
   let!(:season) { Season.create! }
 
   before(:each) do

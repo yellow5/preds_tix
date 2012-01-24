@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "ticket_holders/show.html.haml" do
+describe "ticket_holders/show" do
   let(:season) { Season.create!(:years => '2011-12') }
   let(:ticket_holder) { TicketHolder.create!(:season_id => season.id, :name => 'Obiwan') }
   let(:puck_drop1) { 1.month.from_now }

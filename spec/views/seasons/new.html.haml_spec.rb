@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "seasons/new.html.haml" do
+describe "seasons/new" do
   before(:each) do
     assign(:season, stub_model(Season,
       :years => "MyString"
