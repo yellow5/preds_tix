@@ -114,7 +114,7 @@ GEM
       ruby-debug-base19 (>= 0.11.19)
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
-    sass (3.1.12)
+    sass (3.1.14)
     shoulda-matchers (1.0.0)
     slop (2.4.3)
     sprockets (2.1.2)
