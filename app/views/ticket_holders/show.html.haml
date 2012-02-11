@@ -1,7 +1,7 @@
 .page-header
   %h2= "#{@ticket_holder.name}'s Games in #{@ticket_holder.season.years}"
 = render 'shared/notice', :notice => notice
-%table.zebra-striped
+%table.table.table-striped
   %tr
     %th Puck Drop
     %th Opponent

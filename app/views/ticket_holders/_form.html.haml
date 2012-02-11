@@ -1,6 +1,6 @@
-= form_for(@ticket_holder) do |f|
+= form_for(@ticket_holder, html: { class: 'form-horizontal' }) do |f|
   - if @ticket_holder.errors.any?
-    .alert-message.block-message.error
+    .alert.alert-block.alert-error
       %p.side-padded
         %strong
           = pluralize(@ticket_holder.errors.count, "error")
@@ -8,13 +8,13 @@
         %ul
           - @ticket_holder.errors.full_messages.each do |msg|
             %li= msg
-  .clearfix
-    = f.label :season_id
-    .input
+  .control-group
+    = f.label :season_id, class: 'control-label'
+    .controls
       = f.select :season_id, @seasons.collect { |s| [ s.years, s.id ] }
-  .clearfix
-    = f.label :name
-    .input
+  .control-group
+    = f.label :name, class: 'control-label'
+    .controls
       = f.text_field :name
-  .actions
-    = f.submit :class => 'btn primary'
+  .form-actions
+    = f.submit class: 'btn-primary'
