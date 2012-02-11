@@ -1,6 +1,6 @@
-= form_for(@season) do |f|
+= form_for(@season, html: { class: 'form-horizontal' }) do |f|
   - if @season.errors.any?
-    .alert-message.block-message.error
+    .alert.alert-block.alert-error
       %p.side-padded
         %strong
           = pluralize(@season.errors.count, "error")
@@ -8,9 +8,9 @@
         %ul
           - @season.errors.full_messages.each do |msg|
             %li= msg
-  .clearfix
-    = f.label :years
-    .input
+  .control-group
+    = f.label :years, class: 'control-label'
+    .controls
       = f.text_field :years
-  .actions
-    = f.submit :class => 'btn primary'
+  .form-actions
+    = f.submit class: 'btn-primary'
