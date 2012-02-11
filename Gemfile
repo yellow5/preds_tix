@@ -23,6 +23,6 @@ group :test do
   gem 'foreigner-matcher'
 end
 
-group :production do
+group :assets do
   gem 'uglifier'
 end
