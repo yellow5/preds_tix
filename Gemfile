@@ -6,7 +6,6 @@ gem 'rails', '3.2.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'haml'
-gem 'sass'
 gem 'pg'
 gem 'jquery-rails'
 gem 'thin'
