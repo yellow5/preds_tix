@@ -18,8 +18,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'pry'
-  gem 'ruby-debug19'
+  gem 'pry-rails'
   gem 'shoulda-matchers'
   gem 'foreigner-matcher'
 end
