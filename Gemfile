@@ -14,7 +14,7 @@ gem 'thin'
 gem 'foreigner'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.9.0'
+  gem 'rspec-rails', '~> 2.10.0'
 end
 
 group :test do
