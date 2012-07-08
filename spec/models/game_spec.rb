@@ -28,12 +28,12 @@ describe Game do
       let(:game) { Game.new }
 
       it 'are created' do
-        expect { game.save! }.should change { game.tickets.count }.by(4)
+        expect { game.save! }.to change { game.tickets.count }.by(4)
       end
 
       it 'are not created when saving existing record' do
         game.save!
-        expect { game.save! }.should_not change { game.tickets.count }.by(4)
+        expect { game.save! }.to_not change { game.tickets.count }.by(4)
       end
     end
   end
