@@ -7,11 +7,10 @@
     = csrf_meta_tag
     %link{ :ref => 'shortcut icon', :type => 'image/x-icon', :href => '/favicon.ico' }
   %body
-    .navbar.navbar-fixed-top
+    .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container
-          %h3
-            = link_to 'PredsTix', root_path, :class => 'brand'
+          = link_to 'PredsTix', root_path, :class => 'brand'
           .nav-collapse
             %ul.nav
               %li
