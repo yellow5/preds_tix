@@ -13,6 +13,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'thin'
 gem 'foreigner'
+gem 'seed-fu'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.11.0'
