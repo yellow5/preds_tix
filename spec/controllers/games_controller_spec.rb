@@ -32,9 +32,33 @@ describe GamesController do
     let!(:newest_season) { Season.create! }
 
     context '@season' do
-      it 'is assigned the newest season' do
-        get :index
-        assigns(:season).should eq(newest_season)
+      context 'without params[:season_id]' do
+        it 'is assigned the newest season' do
+          get :index
+          assigns(:season).should eq(newest_season)
+        end
+      end
+
+      context 'with params[:season_id]' do
+        context 'without value present' do
+          it 'is assigned the newest season' do
+            get :index, :season_id => nil
+            assigns(:season).should eq(newest_season)
+
+            get :index, :season_id => ''
+            assigns(:season).should eq(newest_season)
+          end
+        end
+
+        context 'with value present' do
+          it 'is assigned the requested season' do
+            get :index, :season_id => season.id.to_s
+            assigns(:season).should eq(season)
+
+            get :index, :season_id => newest_season.id.to_s
+            assigns(:season).should eq(newest_season)
+          end
+        end
       end
     end
 

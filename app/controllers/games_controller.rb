@@ -2,8 +2,12 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.xml
   def index
-    @season = Season.last
-    @games = Game.where(:season_id => @season).order(:puck_drop)
+    @season = if params[:season_id].present?
+                Season.find(params[:season_id])
+              else
+                Season.last
+              end
+    @games  = Game.where(:season_id => @season).order(:puck_drop)
 
     respond_to do |format|
       format.html # index.html.haml
