@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate
   before_filter :assign_current_season!
-  before_filter :assign_ticket_holders!
+  before_filter :assign_current_ticket_holders!
 
   protected
 
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     @current_season = Season.order('years desc').first
   end
 
-  def assign_ticket_holders!
-    @ticket_holders = TicketHolder.order('name')
+  def assign_current_ticket_holders!
+    @current_ticket_holders = TicketHolder.order('name')
   end
 end
