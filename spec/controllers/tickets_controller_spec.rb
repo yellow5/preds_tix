@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe TicketsController do
+  it_should_behave_like 'application controller subclass'
 
   # This should return the minimal set of attributes required to create a valid
   # Ticket. As you add validations to Ticket, be sure to

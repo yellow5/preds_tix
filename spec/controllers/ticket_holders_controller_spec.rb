@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe TicketHoldersController do
+  it_should_behave_like 'application controller subclass'
 
   # This should return the minimal set of attributes required to create a valid
   # TicketHolder. As you add validations to TicketHolder, be sure to
