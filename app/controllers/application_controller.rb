@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   def assign_current_ticket_holders!
-    @current_ticket_holders = TicketHolder.order('name')
+    @current_ticket_holders = @current_season ? @current_season.ticket_holders.sort_by(&:name) : []
   end
 end

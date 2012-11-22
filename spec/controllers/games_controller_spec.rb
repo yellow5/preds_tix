@@ -104,7 +104,7 @@ describe GamesController do
         TicketHolder.create!(:season_id => other_season.id)
       end
       let!(:over_limit_ticket_holder) do
-        TicketHolder.create!(:season_id => season.id).tap do |ticket_holder|
+        TicketHolder.create!(:season_id => season.id, :name => 'Dooku').tap do |ticket_holder|
           18.times { ticket_holder.tickets.create!(:game_id => game.id) }
         end
       end
