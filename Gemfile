@@ -11,7 +11,7 @@ gem 'bootstrap-sass'
 gem 'sass-rails'
 gem 'pg'
 gem 'jquery-rails'
-gem 'thin'
+gem 'puma'
 gem 'foreigner'
 gem 'seed-fu'
 
