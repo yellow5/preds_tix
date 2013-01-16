@@ -40,4 +40,10 @@ describe "games/index" do
     assert_select "tr>td", :text => game2.opponent, :count => 1
     assert_select 'tr>td', :text => '4', :count => 2
   end
+
+  it 'displays puckdrop in %l:%M format' do
+    game1.update_column(:puck_drop, Time.local(2013, 4, 1, 13, 30, 0))
+    render
+    assert_select 'tr>td', :text => /6:30pm/, :count => 1
+  end
 end
