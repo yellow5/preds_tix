@@ -27,9 +27,11 @@ describe Ticket do
     context 'holder ticket count' do
       let!(:ticket_holder) { TicketHolder.create! }
 
+      before { subject.holder = ticket_holder }
+
       context 'valid' do
         it 'is under the max' do
-          subject.ticket_holder_id = ticket_holder.id
+          ticket_holder.stub(:max_tickets_claimed?).and_return(false)
           subject.should be_valid
         end
       end
@@ -38,8 +40,7 @@ describe Ticket do
         let(:expected_error_msg) { [ 'must be ticket holder who does not have the maximum tickets' ] }
 
         before do
-          18.times { ticket_holder.tickets.create! }
-          subject.ticket_holder_id = ticket_holder.id
+          ticket_holder.stub(:max_tickets_claimed?).and_return(true)
         end
 
         it 'is at the max' do
@@ -76,7 +77,7 @@ describe Ticket do
 
     context 'ticket_holder_id is defined' do
       let(:ticket_holder) { TicketHolder.create! }
-      let(:ticket) { Ticket.create!(:ticket_holder_id => ticket_holder.id) }
+      let(:ticket) { Ticket.new(:ticket_holder_id => ticket_holder.id) }
 
       subject { ticket }
 

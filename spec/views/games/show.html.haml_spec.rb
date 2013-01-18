@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe "games/show" do
+  let(:season) { Season.create! }
   let(:puck_drop) { 2.months.from_now }
-  let!(:game) { Game.create!(:puck_drop => puck_drop, :opponent => 'Boston Bruins') }
-  let!(:ticket_holder1) { TicketHolder.create!(:name => 'Luke') }
-  let!(:ticket_holder2) { TicketHolder.create!(:name => 'Anakin') }
+  let!(:game) { Game.create!(:season => season, :puck_drop => puck_drop, :opponent => 'Boston Bruins') }
+  let!(:ticket_holder1) { TicketHolder.create!(:season => season, :name => 'Luke') }
+  let!(:ticket_holder2) { TicketHolder.create!(:season => season, :name => 'Anakin') }
 
   before do
     assign(:game, game)

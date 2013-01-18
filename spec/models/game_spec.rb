@@ -39,8 +39,9 @@ describe Game do
   end
 
   describe '#available_tickets' do
-    let!(:game) { Game.create! }
-    let!(:ticket_holder) { TicketHolder.create! }
+    let(:season) { Season.create! }
+    let!(:game) { Game.create!(:season => season) }
+    let!(:ticket_holder) { TicketHolder.create!(:season => season) }
     let(:expected_available_tickets) { Array.new }
 
     before do
@@ -65,8 +66,9 @@ describe Game do
   end
 
   describe '#tickets_belonging_to' do
-    let(:game) { Game.create! }
-    let(:ticket_holder) { TicketHolder.create! }
+    let(:season) { Season.create! }
+    let(:game) { Game.create!(:season => season) }
+    let(:ticket_holder) { TicketHolder.create!(:season => season) }
     let(:expected_tickets) { Array.new }
 
     before do

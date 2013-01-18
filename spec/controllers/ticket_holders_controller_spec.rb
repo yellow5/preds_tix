@@ -37,7 +37,8 @@ describe TicketHoldersController do
   end
 
   describe "GET show" do
-    let(:ticket_holder) { TicketHolder.create!(valid_attributes) }
+    let(:ticket_holder) { TicketHolder.create!({ :season => season }.merge(valid_attributes)) }
+    let(:season)        { Season.create!                                                      }
 
     it "assigns the requested ticket_holder as @ticket_holder" do
       get :show, :id => ticket_holder.id.to_s
@@ -46,13 +47,13 @@ describe TicketHoldersController do
 
     context '@games' do
       before do
-        Game.create!
-        Game.create!.tap do |game|
+        Game.create!(:season => season)
+        Game.create!(:season => season).tap do |game|
           game.tickets.each do |ticket|
             ticket.update_attributes!(:ticket_holder_id => ticket_holder.id)
           end
         end
-        Game.create!.tap do |game|
+        Game.create!(:season => season).tap do |game|
           game.tickets.each do |ticket|
             ticket.update_attributes!(:ticket_holder_id => ticket_holder.id)
           end

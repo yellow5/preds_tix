@@ -98,6 +98,7 @@ describe GamesController do
       let!(:season) { Season.create! }
       let!(:other_season) { Season.create! }
       let!(:game) { Game.create!(valid_attributes.merge(:season_id => season.id)) }
+      let(:tickets) { game.tickets }
       let!(:ticket_holder1) { TicketHolder.create!(:season_id => season.id, :name => 'Anakin') }
       let!(:ticket_holder2) { TicketHolder.create!(:season_id => season.id, :name => 'Obiwan') }
       let!(:other_season_ticket_holder) do
@@ -105,7 +106,7 @@ describe GamesController do
       end
       let!(:over_limit_ticket_holder) do
         TicketHolder.create!(:season_id => season.id, :name => 'Dooku').tap do |ticket_holder|
-          18.times { ticket_holder.tickets.create!(:game_id => game.id) }
+          tickets[0].update_column(:ticket_holder_id, ticket_holder)
         end
       end
       let(:expected_ticket_holders) { [ticket_holder1, ticket_holder2] }

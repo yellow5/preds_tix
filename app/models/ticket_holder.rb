@@ -4,6 +4,6 @@ class TicketHolder < ActiveRecord::Base
   has_many :games, :through => :tickets, :uniq => true, :order => :puck_drop
 
   def max_tickets_claimed?
-    tickets.count >= 18
+    tickets.count >= season.tickets.count / season.ticket_holders.count
   end
 end

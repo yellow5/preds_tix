@@ -22,16 +22,17 @@ describe TicketHolder do
     it { should have_many(:games).through(:tickets).order(:puck_drop) }
 
     context 'unique games' do
-      let!(:ticket_holder) { TicketHolder.create! }
+      let!(:ticket_holder) { TicketHolder.create!(:season => season) }
+      let(:season)         { Season.create!                          }
       let!(:game1) do
-        Game.create!(:puck_drop => 1.weeks.from_now).tap do |game|
+        Game.create!(:season => season, :puck_drop => 1.weeks.from_now).tap do |game|
           2.times do
             game.tickets.create!(:ticket_holder_id => ticket_holder.id)
           end
         end
       end
       let!(:game2) do
-        Game.create!(:puck_drop => 2.week.from_now).tap do |game|
+        Game.create!(:season => season, :puck_drop => 2.week.from_now).tap do |game|
           2.times do
             game.tickets.create!(:ticket_holder_id => ticket_holder.id)
           end
@@ -48,7 +49,11 @@ describe TicketHolder do
   end
 
   describe '#max_tickets_claimed?' do
-    let!(:ticket_holder) { TicketHolder.create! }
+    let!(:ticket_holder)  { TicketHolder.create!(:season => season) }
+    let!(:ticket_holder2) { TicketHolder.create!(:season => season) }
+    let(:season)          { Season.create!                          }
+    let!(:game)           { Game.create!(:season => season)         }
+    let(:tickets)         { game.tickets                            }
 
     subject { ticket_holder }
 
@@ -56,9 +61,9 @@ describe TicketHolder do
       subject.should respond_to(:max_tickets_claimed?)
     end
 
-    context 'claimed ticket count < 18' do
+    context 'claimed ticket count < season tickets / season ticket holders' do
       before do
-        17.times { ticket_holder.tickets.create! }
+        tickets[0].update_column(:ticket_holder_id, ticket_holder)
       end
 
       it 'returns false' do
@@ -66,9 +71,10 @@ describe TicketHolder do
       end
     end
 
-    context 'claimed_ticket count >= 18' do
+    context 'claimed ticket count >= season tickets / season ticket holders' do
       before do
-        18.times { ticket_holder.tickets.create! }
+        tickets[0].update_column(:ticket_holder_id, ticket_holder)
+        tickets[1].update_column(:ticket_holder_id, ticket_holder)
       end
 
       it 'returns true' do
