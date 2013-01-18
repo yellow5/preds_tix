@@ -9,6 +9,7 @@ describe Season do
 
   describe 'associations' do
     it { should have_many(:games) }
+    it { should have_many(:tickets).through(:games) }
     it { should have_many(:ticket_holders) }
   end
 end
