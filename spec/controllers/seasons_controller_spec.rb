@@ -82,14 +82,14 @@ describe SeasonsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved season as @season" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Season.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Season).to receive(:save).and_return(false)
         post :create, :season => {}
         assigns(:season).should be_a_new(Season)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Season.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Season).to receive(:save).and_return(false)
         post :create, :season => {}
         response.should render_template("new")
       end
@@ -104,7 +104,7 @@ describe SeasonsController do
         # specifies that the Season created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Season.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        allow_any_instance_of(Season).to receive(:update_attributes).with('these' => 'params')
         put :update, :id => season.id, :season => {'these' => 'params'}
       end
 
@@ -125,7 +125,7 @@ describe SeasonsController do
       it "assigns the season as @season" do
         season = Season.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Season.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Season).to receive(:save).and_return(false)
         put :update, :id => season.id.to_s, :season => {}
         assigns(:season).should eq(season)
       end
@@ -133,7 +133,7 @@ describe SeasonsController do
       it "re-renders the 'edit' template" do
         season = Season.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Season.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Season).to receive(:save).and_return(false)
         put :update, :id => season.id.to_s, :season => {}
         response.should render_template("edit")
       end

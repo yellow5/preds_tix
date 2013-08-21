@@ -181,14 +181,14 @@ describe GamesController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved game as @game" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Game.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Game).to receive(:save).and_return(false)
         post :create, :game => {}
         assigns(:game).should be_a_new(Game)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Game.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Game).to receive(:save).and_return(false)
         post :create, :game => {}
         response.should render_template("new")
       end
@@ -203,7 +203,7 @@ describe GamesController do
         # specifies that the Game created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Game.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        allow_any_instance_of(Game).to receive(:update_attributes).with('these' => 'params')
         put :update, :id => game.id, :game => {'these' => 'params'}
       end
 
@@ -225,14 +225,14 @@ describe GamesController do
 
       it "assigns the game as @game" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Game.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Game).to receive(:save).and_return(false)
         put :update, :id => game.id.to_s, :game => {}
         assigns(:game).should eq(game)
       end
 
       it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Game.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Game).to receive(:save).and_return(false)
         put :update, :id => game.id.to_s, :game => {}
         response.should render_template("edit")
       end

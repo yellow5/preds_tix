@@ -82,14 +82,14 @@ describe TicketsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved ticket as @ticket" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Ticket.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Ticket).to receive(:save).and_return(false)
         post :create, :ticket => {}
         assigns(:ticket).should be_a_new(Ticket)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Ticket.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Ticket).to receive(:save).and_return(false)
         post :create, :ticket => {}
         response.should render_template("new")
       end
@@ -110,7 +110,7 @@ describe TicketsController do
         # specifies that the Ticket created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Ticket.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        allow_any_instance_of(Ticket).to receive(:update_attributes).with('these' => 'params')
         put :update, :id => ticket.id, :ticket => {'these' => 'params'}
       end
 
@@ -131,7 +131,7 @@ describe TicketsController do
       it "assigns the ticket as @ticket" do
         ticket = Ticket.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Ticket.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Ticket).to receive(:save).and_return(false)
         put :update, :id => ticket.id.to_s, :ticket => {}
         assigns(:ticket).should eq(ticket)
       end
@@ -139,7 +139,7 @@ describe TicketsController do
       it "re-renders the 'edit' template" do
         ticket = Ticket.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Ticket.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Ticket).to receive(:save).and_return(false)
         put :update, :id => ticket.id.to_s, :ticket => {}
         response.should render_template("edit")
       end

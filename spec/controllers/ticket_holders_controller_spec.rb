@@ -130,14 +130,14 @@ describe TicketHoldersController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved ticket_holder as @ticket_holder" do
         # Trigger the behavior that occurs when invalid params are submitted
-        TicketHolder.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(TicketHolder).to receive(:save).and_return(false)
         post :create, :ticket_holder => {}
         assigns(:ticket_holder).should be_a_new(TicketHolder)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        TicketHolder.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(TicketHolder).to receive(:save).and_return(false)
         post :create, :ticket_holder => {}
         response.should render_template("new")
       end
@@ -152,7 +152,7 @@ describe TicketHoldersController do
         # specifies that the TicketHolder created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        TicketHolder.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        allow_any_instance_of(TicketHolder).to receive(:update_attributes).with('these' => 'params')
         put :update, :id => ticket_holder.id, :ticket_holder => {'these' => 'params'}
       end
 
@@ -174,14 +174,14 @@ describe TicketHoldersController do
 
       it "assigns the ticket_holder as @ticket_holder" do
         # Trigger the behavior that occurs when invalid params are submitted
-        TicketHolder.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(TicketHolder).to receive(:save).and_return(false)
         put :update, :id => ticket_holder.id.to_s, :ticket_holder => {}
         assigns(:ticket_holder).should eq(ticket_holder)
       end
 
       it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        TicketHolder.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(TicketHolder).to receive(:save).and_return(false)
         put :update, :id => ticket_holder.id.to_s, :ticket_holder => {}
         response.should render_template("edit")
       end

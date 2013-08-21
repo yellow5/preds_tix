@@ -16,7 +16,7 @@ gem 'foreigner'
 gem 'seed-fu'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.12.0'
+  gem 'rspec-rails', '~> 2.14.0'
 end
 
 group :test do
