@@ -1,6 +1,8 @@
 *.swp
 .bundle
 .rvmrc
+.ruby-version
+.ruby-gemset
 .sass-cache
 db/*.sqlite3
 db/schema.rb
