@@ -22,7 +22,7 @@ end
 
 group :test do
   gem 'pry-rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '2.4.0.rc1'
   gem 'foreigner-matcher'
 end
 

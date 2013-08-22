@@ -106,7 +106,7 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    shoulda-matchers (2.3.0)
+    shoulda-matchers (2.4.0.rc1)
       activesupport (>= 3.0.0)
     slop (3.4.6)
     sprockets (2.10.0)
@@ -147,5 +147,5 @@ DEPENDENCIES
   rspec-rails (~> 2.14.0)
   sass-rails
   seed-fu!
-  shoulda-matchers
+  shoulda-matchers (= 2.4.0.rc1)
   uglifier
