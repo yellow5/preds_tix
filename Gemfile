@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '~> 3.2.9'
+gem 'rails', '~> 4.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -14,7 +14,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'puma'
 gem 'foreigner'
-gem 'seed-fu'
+gem 'seed-fu',       github: 'mbleigh/seed-fu'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'
