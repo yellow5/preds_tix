@@ -13,7 +13,7 @@ class Game < ActiveRecord::Base
   end
 
   def tickets_belonging_to(ticket_holder)
-    tickets.all(:conditions => { :ticket_holder_id => ticket_holder })
+    tickets.where(:ticket_holder_id => ticket_holder)
   end
 
   private
