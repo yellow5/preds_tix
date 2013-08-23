@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-PredsTix::Application.config.secret_key_base = 'cd617451b3fb02d6d428e4564d690ed97d9980ebc5248a01693cb14ab09a5c15f0fd488b2b4588a47d31e591616403f4ed5cfef4b48dcc2141d944bb27e1f9b5'
+PredsTix::Application.config.secret_key_base = ENV['SECRET_KEY_BASE'] || 'f196e7cf47f6570b56c19c02bee1d418c2ba18714c790ed413a3444efd93875452d06fcd78829e1bc9fd1ef3312bdd1461b77540a48ce021ef2f9ce692ae5e79'
