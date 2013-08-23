@@ -24,8 +24,11 @@ describe TicketsController do
   # This should return the minimal set of attributes required to create a valid
   # Ticket. As you add validations to Ticket, be sure to
   # update the return value of this method accordingly.
-  def valid_attributes
-    {}
+  let(:valid_attributes) do
+    { :game_id => nil, :ticket_holder_id => nil }
+  end
+  let(:invalid_attributes) do
+    { :invalid_field => :invalid_value }
   end
 
   describe "GET index" do
@@ -83,14 +86,14 @@ describe TicketsController do
       it "assigns a newly created but unsaved ticket as @ticket" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Ticket).to receive(:save).and_return(false)
-        post :create, :ticket => {}
+        post :create, :ticket => invalid_attributes
         assigns(:ticket).should be_a_new(Ticket)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Ticket).to receive(:save).and_return(false)
-        post :create, :ticket => {}
+        post :create, :ticket => invalid_attributes
         response.should render_template("new")
       end
     end
@@ -110,8 +113,8 @@ describe TicketsController do
         # specifies that the Ticket created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        allow_any_instance_of(Ticket).to receive(:update_attributes).with('these' => 'params')
-        put :update, :id => ticket.id, :ticket => {'these' => 'params'}
+        allow_any_instance_of(Ticket).to receive(:update_attributes).with('game_id' => '1')
+        put :update, :id => ticket.id, :ticket => { :game_id => 1 }
       end
 
       it "assigns the requested ticket as @ticket" do
@@ -132,7 +135,7 @@ describe TicketsController do
         ticket = Ticket.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Ticket).to receive(:save).and_return(false)
-        put :update, :id => ticket.id.to_s, :ticket => {}
+        put :update, :id => ticket.id.to_s, :ticket => invalid_attributes
         assigns(:ticket).should eq(ticket)
       end
 
@@ -140,7 +143,7 @@ describe TicketsController do
         ticket = Ticket.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Ticket).to receive(:save).and_return(false)
-        put :update, :id => ticket.id.to_s, :ticket => {}
+        put :update, :id => ticket.id.to_s, :ticket => invalid_attributes
         response.should render_template("edit")
       end
     end
