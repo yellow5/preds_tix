@@ -24,8 +24,11 @@ describe TicketHoldersController do
   # This should return the minimal set of attributes required to create a valid
   # TicketHolder. As you add validations to TicketHolder, be sure to
   # update the return value of this method accordingly.
-  def valid_attributes
-    {}
+  let(:valid_attributes) do
+    { :season_id => nil, :name => nil }
+  end
+  let(:invalid_attributes) do
+    { :invalid_field => :invalid_value }
   end
 
   describe "GET index" do
@@ -37,8 +40,8 @@ describe TicketHoldersController do
   end
 
   describe "GET show" do
-    let(:ticket_holder) { TicketHolder.create!({ :season => season }.merge(valid_attributes)) }
-    let(:season)        { Season.create!                                                      }
+    let(:ticket_holder) { TicketHolder.create!(valid_attributes.merge(:season => season)) }
+    let(:season)        { Season.create!                                                  }
 
     it "assigns the requested ticket_holder as @ticket_holder" do
       get :show, :id => ticket_holder.id.to_s
@@ -131,14 +134,14 @@ describe TicketHoldersController do
       it "assigns a newly created but unsaved ticket_holder as @ticket_holder" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(TicketHolder).to receive(:save).and_return(false)
-        post :create, :ticket_holder => {}
+        post :create, :ticket_holder => invalid_attributes
         assigns(:ticket_holder).should be_a_new(TicketHolder)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(TicketHolder).to receive(:save).and_return(false)
-        post :create, :ticket_holder => {}
+        post :create, :ticket_holder => invalid_attributes
         response.should render_template("new")
       end
     end
@@ -152,8 +155,8 @@ describe TicketHoldersController do
         # specifies that the TicketHolder created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        allow_any_instance_of(TicketHolder).to receive(:update_attributes).with('these' => 'params')
-        put :update, :id => ticket_holder.id, :ticket_holder => {'these' => 'params'}
+        allow_any_instance_of(TicketHolder).to receive(:update_attributes).with('name' => 'James Bond')
+        put :update, :id => ticket_holder.id, :ticket_holder => { :name => 'James Bond' }
       end
 
       it "assigns the requested ticket_holder as @ticket_holder" do
@@ -175,14 +178,14 @@ describe TicketHoldersController do
       it "assigns the ticket_holder as @ticket_holder" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(TicketHolder).to receive(:save).and_return(false)
-        put :update, :id => ticket_holder.id.to_s, :ticket_holder => {}
+        put :update, :id => ticket_holder.id.to_s, :ticket_holder => invalid_attributes
         assigns(:ticket_holder).should eq(ticket_holder)
       end
 
       it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(TicketHolder).to receive(:save).and_return(false)
-        put :update, :id => ticket_holder.id.to_s, :ticket_holder => {}
+        put :update, :id => ticket_holder.id.to_s, :ticket_holder => invalid_attributes
         response.should render_template("edit")
       end
 
@@ -193,7 +196,7 @@ describe TicketHoldersController do
         end
 
         it 'is assigned available seasons' do
-          put :update, :id => ticket_holder.id.to_s, :ticket_holder => {}
+          put :update, :id => ticket_holder.id.to_s, :ticket_holder => invalid_attributes
           assigns(:seasons).should eq(Season.all)
         end
       end

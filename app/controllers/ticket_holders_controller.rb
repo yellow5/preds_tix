@@ -42,7 +42,7 @@ class TicketHoldersController < ApplicationController
   # POST /ticket_holders
   # POST /ticket_holders.xml
   def create
-    @ticket_holder = TicketHolder.new(params[:ticket_holder])
+    @ticket_holder = TicketHolder.new(ticket_holder_params)
 
     respond_to do |format|
       if @ticket_holder.save
@@ -62,7 +62,7 @@ class TicketHoldersController < ApplicationController
     @seasons       = Season.all
 
     respond_to do |format|
-      if @ticket_holder.update_attributes(params[:ticket_holder])
+      if @ticket_holder.update_attributes(ticket_holder_params)
         format.html { redirect_to(@ticket_holder, :notice => 'Ticket holder was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -70,5 +70,11 @@ class TicketHoldersController < ApplicationController
         format.xml  { render :xml => @ticket_holder.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  private
+
+  def ticket_holder_params
+    params.require(:ticket_holder).permit(:season_id, :name)
   end
 end
