@@ -24,8 +24,11 @@ describe SeasonsController do
   # This should return the minimal set of attributes required to create a valid
   # Season. As you add validations to Season, be sure to
   # update the return value of this method accordingly.
-  def valid_attributes
-    {}
+  let(:valid_attributes) do
+    { :years => nil }
+  end
+  let(:invalid_attributes) do
+    { :invalid_field => :invalid_value }
   end
 
   describe "GET index" do
@@ -83,14 +86,14 @@ describe SeasonsController do
       it "assigns a newly created but unsaved season as @season" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Season).to receive(:save).and_return(false)
-        post :create, :season => {}
+        post :create, :season => invalid_attributes
         assigns(:season).should be_a_new(Season)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Season).to receive(:save).and_return(false)
-        post :create, :season => {}
+        post :create, :season => invalid_attributes
         response.should render_template("new")
       end
     end
@@ -104,8 +107,8 @@ describe SeasonsController do
         # specifies that the Season created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        allow_any_instance_of(Season).to receive(:update_attributes).with('these' => 'params')
-        put :update, :id => season.id, :season => {'these' => 'params'}
+        allow_any_instance_of(Season).to receive(:update_attributes).with('years' => '1998-99')
+        put :update, :id => season.id, :season => { :years => '1998-99' }
       end
 
       it "assigns the requested season as @season" do
@@ -126,7 +129,7 @@ describe SeasonsController do
         season = Season.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Season).to receive(:save).and_return(false)
-        put :update, :id => season.id.to_s, :season => {}
+        put :update, :id => season.id.to_s, :season => invalid_attributes
         assigns(:season).should eq(season)
       end
 
@@ -134,7 +137,7 @@ describe SeasonsController do
         season = Season.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Season).to receive(:save).and_return(false)
-        put :update, :id => season.id.to_s, :season => {}
+        put :update, :id => season.id.to_s, :season => invalid_attributes
         response.should render_template("edit")
       end
     end
