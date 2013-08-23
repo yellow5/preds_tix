@@ -51,7 +51,7 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.xml
   def create
-    @game = Game.new(params[:game])
+    @game = Game.new(game_params)
 
     respond_to do |format|
       if @game.save
@@ -71,7 +71,7 @@ class GamesController < ApplicationController
     @seasons = Season.all
 
     respond_to do |format|
-      if @game.update_attributes(params[:game])
+      if @game.update_attributes(game_params)
         format.html { redirect_to(@game, :notice => 'Game was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -79,5 +79,11 @@ class GamesController < ApplicationController
         format.xml  { render :xml => @game.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  private
+
+  def game_params
+    params.require(:game).permit(:season_id, :puck_drop, :opponent, :preseason)
   end
 end

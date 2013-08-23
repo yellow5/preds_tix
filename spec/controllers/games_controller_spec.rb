@@ -24,8 +24,11 @@ describe GamesController do
   # This should return the minimal set of attributes required to create a valid
   # Game. As you add validations to Game, be sure to
   # update the return value of this method accordingly.
-  def valid_attributes
-    {}
+  let(:valid_attributes) do
+    { :season_id => nil, :puck_drop => nil, :opponent => nil, :preseason => nil }
+  end
+  let(:invalid_attributes) do
+    { :invalid_field => :invalid_value }
   end
 
   describe "GET index" do
@@ -182,14 +185,14 @@ describe GamesController do
       it "assigns a newly created but unsaved game as @game" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Game).to receive(:save).and_return(false)
-        post :create, :game => {}
+        post :create, :game => invalid_attributes
         assigns(:game).should be_a_new(Game)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Game).to receive(:save).and_return(false)
-        post :create, :game => {}
+        post :create, :game => invalid_attributes
         response.should render_template("new")
       end
     end
@@ -203,8 +206,8 @@ describe GamesController do
         # specifies that the Game created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        allow_any_instance_of(Game).to receive(:update_attributes).with('these' => 'params')
-        put :update, :id => game.id, :game => {'these' => 'params'}
+        allow_any_instance_of(Game).to receive(:update_attributes).with('opponent' => 'Dixie Flyers')
+        put :update, :id => game.id, :game => { :opponent => 'Dixie Flyers' }
       end
 
       it "assigns the requested game as @game" do
@@ -226,14 +229,14 @@ describe GamesController do
       it "assigns the game as @game" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Game).to receive(:save).and_return(false)
-        put :update, :id => game.id.to_s, :game => {}
+        put :update, :id => game.id.to_s, :game => invalid_attributes
         assigns(:game).should eq(game)
       end
 
       it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Game).to receive(:save).and_return(false)
-        put :update, :id => game.id.to_s, :game => {}
+        put :update, :id => game.id.to_s, :game => invalid_attributes
         response.should render_template("edit")
       end
 
@@ -244,7 +247,7 @@ describe GamesController do
         end
 
         it 'is assigned available seasons' do
-          put :update, :id => game.id.to_s, :game => {}
+          put :update, :id => game.id.to_s, :game => invalid_attributes
           assigns(:seasons).should eq(Season.all)
         end
       end
