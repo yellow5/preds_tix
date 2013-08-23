@@ -29,3 +29,7 @@ end
 group :assets do
   gem 'uglifier'
 end
+
+group :production do
+  gem 'rails_12factor'
+end
